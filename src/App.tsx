@@ -1,9 +1,9 @@
 import "./App.css";
-import Button from "@mui/material/Button";
+import SidebarLayout from "./layouts/SidebarLayout";
 function App() {
   return (
     <>
-      <Button variant="contained">App</Button>
+      <SidebarLayout />
     </>
   );
 }
