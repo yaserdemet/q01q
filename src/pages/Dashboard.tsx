@@ -1,17 +1,13 @@
-// import { use } from "react";
-import {useLoaderData} from "react-router"
-// import { getTimePray } from "../services/getTimePray.js";
+import { useLoaderData, useNavigation } from "react-router";
 const Dashboard = () => {
-    // const data = use(getTimePray())
-    const data = useLoaderData()
-    console.log(data)
+  const data = useLoaderData();
+  const navigation = useNavigation();
+  console.log(data?.data);
   return (
     <>
       <title>Dashboard</title>
       <meta name="description" content="User Dashboard" />
-      <div>
-        <h1>Dashboard</h1>
-      </div>
+      <div>{data?.message}</div>
     </>
   );
 };

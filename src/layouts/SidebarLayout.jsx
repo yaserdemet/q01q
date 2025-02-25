@@ -18,7 +18,6 @@ import NavbarLayout from './NavbarLayout';
 import {Outlet} from "react-router";
 
 const drawerWidth = 240;
-
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
@@ -77,7 +76,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function SidebarLayout() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+console.log(navigation)
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -203,7 +202,11 @@ export default function SidebarLayout() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        
+        {navigation.state === "loading" && (
+          <Box>
+            <h2>Yükleniyor...</h2>
+          </Box>
+        )}  
           <Outlet />
       </Box>
     </Box>

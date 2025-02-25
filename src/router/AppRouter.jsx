@@ -12,7 +12,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
-        loader : getTimePray
+        loader : getTimePray,
       },
       {
         path: "/",
