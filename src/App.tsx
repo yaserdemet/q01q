@@ -1,11 +1,12 @@
-import "./App.css";
-import AppRouter from "./router/AppRouter.jsx";
-function App() {
+import { AppSidebar } from "./components/app-sidebar"
+import Page from "./pages/page1"
+
+export function App() {
   return (
-    <>
-      <AppRouter />
-    </>
-  );
+      <>
+        <Page />
+      </>
+  )
 }
 
-export default App;
+export default App
