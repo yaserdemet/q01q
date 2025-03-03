@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarImage } from "../components/ui/avatar";
 import logo from "@/assets/logo.webp";
 import { useLoaderData } from "react-router-dom";
 import { useEffect } from "react";

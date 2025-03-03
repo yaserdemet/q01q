@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/layouts/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,7 +14,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import Footer from "@/components/footer";
+import Footer from "@/layouts/footer";
 
 interface LayoutProps {
   children: ReactNode;
