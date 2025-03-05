@@ -3,20 +3,6 @@ import { Pen } from "lucide-react";
 import VerbExplorer from "@/components/verbs/VerbExplorer";
 import PastVerb from "@/components/verbs/past/PastVerb";
 
-const renderVerbWithSuffix = (verb: string) => {
-  const root = verb.substring(0, 3);
-  const suffix = verb.substring(3);
-
-  return (
-    <span dir="rtl" className="text-2xl font-bold">
-      <span className="text-gray-700">{root}</span>
-      {suffix && (
-        <span className="font-bold bg-yellow-100 px-1 rounded">{suffix}</span>
-      )}
-    </span>
-  );
-};
-
 export default function PastVerbPage() {
   return (
     <Header

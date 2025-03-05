@@ -51,11 +51,56 @@ const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
     }
   };
 
-  const defaultRender = (verb: string) => (
-    <span dir="rtl" className="text-2xl font-bold">
-      {verb}
-    </span>
-  );
+  const defaultRender = (verb: string) => {
+    if (!verb) return null;
+
+    if (tense === "past") {
+      // Past: indices 0-5 are root/stem, 6+ are suffix
+      const stem = verb.substring(0, 6);
+      const suffix = verb.substring(6);
+      return (
+        <span dir="rtl" className="text-2xl font-bold">
+          <span className="text-slate-600">{stem}</span>
+          {suffix && (
+            <span className="text-amber-600 bg-amber-50 px-0.5 rounded">
+              {suffix}
+            </span>
+          )}
+        </span>
+      );
+    } else {
+      // Present: 0-1 prefix, 2-7 root/stem, 8+ suffix
+      // Handle the "آ" case for verbs starting with Alif
+      const hasMaddaPrefix = verb.startsWith("آ");
+      let prefix = "";
+      let stem = "";
+      let suffix = "";
+
+      if (hasMaddaPrefix) {
+        prefix = verb.substring(0, 1);
+        stem = verb.substring(1, 4); // Stem is shorter because Madda combines things
+        suffix = verb.substring(4);
+      } else {
+        prefix = verb.substring(0, 2);
+        stem = verb.substring(2, 8);
+        suffix = verb.substring(8);
+      }
+
+      return (
+        <span dir="rtl" className="text-2xl font-bold">
+          <span className="text-indigo-600 bg-indigo-50 px-0.5 rounded">
+            {prefix}
+          </span>
+          <span className="text-slate-600">{stem}</span>
+          {suffix && (
+            <span className="text-amber-600 bg-amber-50 px-0.5 rounded">
+              {suffix}
+            </span>
+          )}
+        </span>
+      );
+    }
+  };
 
   const displayVerb = renderVerb || defaultRender;
 
