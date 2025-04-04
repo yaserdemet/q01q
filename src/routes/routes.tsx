@@ -9,6 +9,7 @@ import ErrorPage from "@/pages/ErrorPage";
 import PastVerbPage from "@/pages/PastVerb";
 import PronounsPage from "@/pages/Pronouns";
 import PresentVerbs from "@/pages/PresentVerbs";
+import Prular from "@/pages/Prular";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,11 @@ export const router = createBrowserRouter([
         path: "settings",
         element: <SettingsPage />,
         handle: { title: "Settings" },
+      },
+       {
+        path: "prular",
+        element: <Prular />,
+        handle: { title: "Prular" },
       },
     ],
   },

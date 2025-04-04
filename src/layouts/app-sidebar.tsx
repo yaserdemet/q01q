@@ -70,6 +70,10 @@ const data = {
           title: "Present Verbs",
           url: "/present-verbs",
         },
+          {
+          title: "Prular",
+          url: "/prular",
+        },
         {
           title: "Settings",
           url: "/settings",
