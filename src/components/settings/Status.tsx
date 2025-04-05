@@ -55,7 +55,7 @@ const Status = () => {
           Your current battery status percentage.
         </FieldDescription>
       </Field>
-      
+      <Field  className="grid  md:grid-cols-2  gap-4">
       {
         settingsValue.map((setting) => {
             return (
@@ -78,6 +78,7 @@ const Status = () => {
             )
         })
       }
+        </Field>
     </>
   );
 };
