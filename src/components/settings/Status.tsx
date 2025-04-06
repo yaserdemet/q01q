@@ -12,31 +12,42 @@ const Status = () => {
         // Set initial battery status
         setBatteryStatus(Math.round(battery.level * 100));
 
-        // Listen to battery level changes
-     const handleChange = () =>    battery.addEventListener("levelchange", () => {
+        // Define event handlers
+        const handleLevelChange = () => {
           setBatteryStatus(Math.round(battery.level * 100));
-        });
+        };
+
+        const handleChargingChange = () => {
+          setBatteryStatus(Math.round(battery.level * 100));
+        };
+
+        // Listen to battery level changes
+        battery.addEventListener("levelchange", handleLevelChange);
 
         // Listen to charging status changes
-      const handleCharging = () =>   battery.addEventListener("chargingchange", () => {
-          setBatteryStatus(Math.round(battery.level * 100));
-        });
+        battery.addEventListener("chargingchange", handleChargingChange);
+
+        // Cleanup listeners on unmount
         return () => {
-            battery.removeEventListener("levelchange", handleChange);
-            battery.removeEventListener("chargingchange", handleCharging);
-        }
-    
+          battery.removeEventListener("levelchange", handleLevelChange);
+          battery.removeEventListener("chargingchange", handleChargingChange);
+        };
       });
-      
-    
     } else {
       setBatteryStatus("Your browser does not support Battery Status API");
     }
-
+  }, []);
+  const [time, setTime] = React.useState(new Date());
+  React.useEffect(() => {
+    const tick = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(tick);
   }, []);
   return (
     <>
       <Field className="mt-4 max-w-4xl">
+        <h1>
+          {time.toLocaleTimeString()}, {time.toLocaleDateString()}
+        </h1>
         <FieldLabel
           className={StatusCheck(
             typeof batteryStatus === "number" ? batteryStatus : 0,
@@ -55,30 +66,26 @@ const Status = () => {
           Your current battery status percentage.
         </FieldDescription>
       </Field>
-      <Field  className="grid  md:grid-cols-2  gap-4">
-      {
-        settingsValue.map((setting) => {
-            return (
-                <Field className="mt-4 max-w-4xl" key={setting.id}>
-                  <FieldLabel
-                    htmlFor={`input-field-${setting.id}`}
-                  >
-                    {setting.name}
-                  </FieldLabel>
-                  <Input
-                    id={`input-field-${setting.id}`}
-                    type="text"
-                    placeholder={`Your ${setting.name}`}
-                    value={setting.value}
-                  />
-                  <FieldDescription>
-                    Your current {setting.name} setting.
-                  </FieldDescription>
-                </Field>
-            )
-        })
-      }
-        </Field>
+      <Field className="grid  md:grid-cols-2  gap-4">
+        {settingsValue.map((setting) => {
+          return (
+            <Field className="mt-4 max-w-4xl" key={setting.id}>
+              <FieldLabel htmlFor={`input-field-${setting.id}`}>
+                {setting.name}
+              </FieldLabel>
+              <Input
+                id={`input-field-${setting.id}`}
+                type="text"
+                placeholder={`Your ${setting.name}`}
+                value={setting.value}
+              />
+              <FieldDescription>
+                Your current {setting.name} setting.
+              </FieldDescription>
+            </Field>
+          );
+        })}
+      </Field>
     </>
   );
 };
