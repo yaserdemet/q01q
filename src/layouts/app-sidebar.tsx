@@ -59,8 +59,8 @@ const data = {
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "/history",
+          title: "Pronouns",
+          url: "pronouns",
         },
         {
           title: "Starred",

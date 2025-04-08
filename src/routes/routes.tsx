@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "@/layouts/layout";
 import Page from "@/pages/page1";
 import PlaygroundPage from "@/pages/playground";
-import HistoryPage from "@/pages/history";
+import HistoryPage from "@/pages/Pronouns";
 import StarredPage from "@/pages/starred";
 import SettingsPage from "@/pages/settings";
 import { getLocationFromIP } from "@/apis/getPrayTime";
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
         handle: { title: "Playground" },
       },
       {
-        path: "history",
+        path: "pronouns",
         element: <HistoryPage />,
         handle: { title: "History" },
       },
