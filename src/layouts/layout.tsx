@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Outlet, useMatches } from "react-router-dom";
 import { AppSidebar } from "@/layouts/app-sidebar";
 import {
   Breadcrumb,
@@ -17,16 +18,22 @@ import {
 import Footer from "@/layouts/footer";
 
 interface LayoutProps {
-  children: ReactNode;
+  children?: ReactNode;
   pageTitle?: string;
   breadcrumbItems?: Array<{ label: string; href?: string }>;
 }
 
 export default function Layout({
   children,
-  pageTitle = "Page",
+  pageTitle: propPageTitle,
   breadcrumbItems = [],
 }: LayoutProps) {
+  const matches = useMatches();
+
+  // Get pageTitle from the last route handle if not provided as a prop
+  const routePageTitle = (matches[matches.length - 1]?.handle as any)?.title;
+  const pageTitle = propPageTitle || routePageTitle || "Page";
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -70,7 +77,9 @@ export default function Layout({
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          {children || <Outlet />}
+        </div>
         <Footer />
       </SidebarInset>
     </SidebarProvider>

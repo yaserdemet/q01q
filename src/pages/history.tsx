@@ -1,9 +1,12 @@
 import MetaData from "@/lib/MetaData";
 import { useLoaderData } from "react-router-dom";
-
+import { useEffect } from "react";
 export default function HistoryPage() {
   // const data = useLoaderData();
   // console.log("data" ,data);
+    useEffect(() => {
+    throw new Error("Something went wrong")
+   },[])
   
 
   return (
