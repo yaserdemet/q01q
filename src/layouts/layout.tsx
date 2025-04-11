@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Outlet, useMatches } from "react-router-dom";
 import { AppSidebar } from "@/layouts/app-sidebar";
 import {

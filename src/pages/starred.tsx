@@ -147,20 +147,6 @@ const verbs: VerbConjugation[] = [
   },
 ];
 
-const suffixColors: { [key: string]: string } = {
-  "": "text-gray-800",
-  "َ": "text-red-500",
-  "ِ": "text-blue-500",
-  "ُ": "text-green-500",
-  "ْ": "text-purple-500",
-  ت: "bg-yellow-200",
-  ا: "bg-cyan-200",
-  و: "bg-pink-200",
-  ن: "bg-orange-200",
-  ما: "bg-indigo-200",
-  نا: "bg-teal-200",
-};
-
 const renderVerbWithSuffix = (verb: string) => {
   const root = verb.substring(0, 3);
   const suffix = verb.substring(3);

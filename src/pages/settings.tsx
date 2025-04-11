@@ -1,6 +1,6 @@
-import Status from "@/components/settings/status";
-import Header from "@/components/ui/header";
-import {Wrench} from "lucide-react"
+import Status from "@/components/settings/Status";
+import Header from "@/components/ui/Header";
+import { Wrench } from "lucide-react";
 
 export default function SettingsPage() {
   return (

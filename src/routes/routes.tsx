@@ -6,7 +6,7 @@ import HistoryPage from "@/pages/Pronouns";
 import StarredPage from "@/pages/starred";
 import SettingsPage from "@/pages/settings";
 import { getLocationFromIP } from "@/apis/getPrayTime";
-import { ErrorBoundary } from "@/components/error-boundary";
+
 import ErrorPage from "@/pages/ErrorPage";
 
 export const router = createBrowserRouter([
@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     loader: getLocationFromIP,
-    errorElement : <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

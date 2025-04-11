@@ -1,4 +1,5 @@
-const url = "https://ezanvakti.imsakiyem.com/api/locations/districts?stateId=505";
+const url =
+  "https://ezanvakti.imsakiyem.com/api/locations/districts?stateId=505";
 export const getPrayTime = async () => {
   try {
     const response = await fetch(url);
@@ -10,7 +11,7 @@ export const getPrayTime = async () => {
   }
 };
 
- export  async function getLocationFromIP() {
-  const res = await fetch("http://ip-api.com/json");
+export async function getLocationFromIP() {
+  const res = await fetch("https://ipapi.co/json/");
   return await res.json();
 }

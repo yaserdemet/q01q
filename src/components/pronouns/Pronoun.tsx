@@ -7,51 +7,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import { rows, header, renderAvatars } from "./data";
+import { useSpeech } from "@/hooks/useSpeech";
+import { Button } from "@/components/ui/button";
+import { Volume2 } from "lucide-react";
+
 const Pronoun = () => {
-  const header = [
-    { id: 1, row: "Plural" },
-    { id: 2, row: "Dual" },
-    { id: 3, row: "Singular" },
-  ];
-
-  const rows = [
-    {
-      id: 1,
-      category: "3rd Person Masc (Gha'ib)",
-      arabic: ["هُوَ", "هُمَا", "هُمْ"],
-      english: ["He", "They (2)", "They (3+)"],
-      type: "male",
-    },
-    {
-      id: 2,
-      category: "3rd Person Fem (Gha'ibah)",
-      arabic: ["هِيَ", "هُمَا", "هُنَّ"],
-      english: ["She", "They (2)", "They (3+)"],
-      type: "female",
-    },
-    {
-      id: 3,
-      category: "2nd Person Masc (Mukhatab)",
-      arabic: ["أَنْتَ", "أَنْتُمَا", "أَنْتُمْ"],
-      english: ["You", "You (2)", "You (3+)"],
-      type: "male",
-    },
-    {
-      id: 4,
-      category: "2nd Person Fem (Mukhatabah)",
-      arabic: ["أَنْتِ", "أَنْتُمَا", "أَنْتُنَّ"],
-      english: ["You", "You (2)", "You (3+)"],
-      type: "female",
-    },
-    {
-      id: 5,
-      category: "1st Person (Mutakallim)",
-      arabic: ["أَنَا", "نَحْنُ", "نَحْنُ"],
-      english: ["I", "We (2)", "We (3+)"],
-      type: "male and female",
-    },
-  ];
-
+  const { speak } = useSpeech();
   return (
     <div className="rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden">
       <Table>
@@ -75,20 +37,41 @@ const Pronoun = () => {
                 {row.category}
               </TableCell>
               {/* Mapping reversed arrays to match [Plural, Dual, Singular] header order */}
-              {row.arabic.reverse().map((word, index) => {
-                const translation = row.english.slice().reverse()[index];
+              {[...row.arabic].reverse().map((word, index) => {
+                const translation = [...row.english].reverse()[index];
                 return (
-                  <TableCell key={index} className="text-center py-4">
-                    <div className="flex flex-col gap-1">
-                      <span
-                        className={`${row.type === "male" ? "text-blue-600 dark:text-blue-400" : row.type === "female" ? "text-pink-600 dark:text-pink-400" : "text-purple-700 dark:text-purple-400"} text-2xl font-bold `}
-                        dir="rtl"
-                      >
-                        {word}
-                      </span>
-                      <span className="text-xs text-slate-400 capitalize">
-                        {translation}
-                      </span>
+                  <TableCell key={index} className="text-center py-6">
+                    <div className="flex flex-col items-center gap-3">
+                      {renderAvatars(row.type, index)}
+
+                      <div className="flex flex-col items-center gap-2">
+                        <Button
+                          variant="ghost"
+                          size="lg"
+                          className="h-auto py-2 px-4 hover:bg-muted group transition-all duration-300"
+                          onClick={() => speak("merhbaa")}
+                        >
+                          <div className="flex flex-col items-center gap-1">
+                            <span
+                              className={`${
+                                row.type === "male"
+                                  ? "text-blue-600 dark:text-blue-400"
+                                  : row.type === "female"
+                                    ? "text-pink-600 dark:text-pink-400"
+                                    : "text-purple-700 dark:text-purple-400"
+                              } text-3xl font-bold tracking-wide`}
+                              dir="rtl"
+                            >
+                              {word}
+                            </span>
+                            <Volume2 className="h-4 w-4 text-slate-400 group-hover:text-primary group-hover:scale-110 transition-all" />
+                          </div>
+                        </Button>
+
+                        <span className="text-sm font-medium text-slate-500 dark:text-slate-400 capitalize">
+                          {translation}
+                        </span>
+                      </div>
                     </div>
                   </TableCell>
                 );
