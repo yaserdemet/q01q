@@ -161,191 +161,193 @@ const renderVerbWithSuffix = (verb: string) => {
   );
 };
 
+const tableRows = [
+  {
+    category: "3rd Person Masc",
+    type: "male",
+    cells: [
+      { pronoun: "هُو", english: "He", key: "maleHe" },
+      { pronoun: "هُما", english: "They (2M)", key: "maleDual" },
+      { pronoun: "هُم", english: "They (3+M)", key: "malePlural" },
+    ],
+  },
+  {
+    category: "3rd Person Fem",
+    type: "female",
+    cells: [
+      { pronoun: "هِي", english: "She", key: "femaleShe" },
+      { pronoun: "هُما", english: "They (2F)", key: "femaleDual" },
+      { pronoun: "هُنّ", english: "They (3+F)", key: "femalePlural" },
+    ],
+  },
+  {
+    category: "2nd Person Masc",
+    type: "male",
+    cells: [
+      { pronoun: "أَنْتَ", english: "You (M)", key: "maleYou" },
+      { pronoun: "أَنْتُما", english: "You Two (M)", key: "yourDualMale" },
+      { pronoun: "أَنْتُم", english: "You (3+M)", key: "malePlural" }, // Note: currently using malePlural as placeholder
+    ],
+  },
+  {
+    category: "2nd Person Fem",
+    type: "female",
+    cells: [
+      { pronoun: "أَنْتِ", english: "You (F)", key: "femaleYou" },
+      { pronoun: "أَنْتُما", english: "You Two (F)", key: "yourDualMale" },
+      { pronoun: "أَنْتُنّ", english: "You (3+F)", key: "femalePlural" }, // Note: currently using femalePlural as placeholder
+    ],
+  },
+  {
+    category: "1st Person",
+    type: "both",
+    cells: [
+      { pronoun: "أَنَا", english: "I", key: "maleI" },
+      { pronoun: "نَحْنُ", english: "We (2)", key: "we" },
+      { pronoun: "نَحْنُ", english: "We (3+)", key: "we" },
+    ],
+  },
+];
+
 export default function StarredPage() {
   const [selectedVerbIndex, setSelectedVerbIndex] = useState(0);
   const selectedVerb = verbs[selectedVerbIndex];
 
+  const getRowClassName = (type: string) => {
+    switch (type) {
+      case "male":
+        return "hover:bg-blue-50/50 dark:hover:bg-blue-900/10";
+      case "female":
+        return "bg-pink-50/30 hover:bg-pink-100/50 dark:hover:bg-pink-900/10";
+      case "both":
+        return "bg-purple-50/30 hover:bg-purple-100/50 dark:hover:bg-purple-900/10";
+      default:
+        return "hover:bg-slate-50";
+    }
+  };
+
+  const getVerbColor = (type: string) => {
+    switch (type) {
+      case "male":
+        return "text-blue-600";
+      case "female":
+        return "text-pink-600";
+      case "both":
+        return "text-purple-600";
+      default:
+        return "text-blue-600";
+    }
+  };
+
   return (
-    <div className="p-8">
+    <div className="p-8 max-w-6xl">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">Arabic Verbs - Past Tense</h1>
-        <p className="text-gray-600 mb-6">
+        <h1 className="text-3xl font-bold mb-4">
+          Arabic Verbs - Past Tense
+        </h1>
+        <p className="text-muted-foreground mb-6">
           Select a verb to see its conjugations for different genders and
           numbers
         </p>
 
-        <div className="mb-6 max-w-xs">
-          <label className="text-sm font-medium mb-2 block">
-            Choose a verb:
-          </label>
-          <Select
-            value={selectedVerbIndex.toString()}
-            onValueChange={(value) => setSelectedVerbIndex(parseInt(value))}
-          >
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {verbs.map((verb, idx) => (
-                <SelectItem key={idx} value={idx.toString()}>
-                  {verb.infinitive} - {verb.meaning}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+          <div className="max-w-xs">
+            <label className="text-sm font-semibold mb-2 block text-slate-700">
+              Choose a verb:
+            </label>
+            <Select
+              value={selectedVerbIndex.toString()}
+              onValueChange={(value) => setSelectedVerbIndex(parseInt(value))}
+            >
+              <SelectTrigger className="w-full bg-white shadow-sm border-slate-200">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {verbs.map((verb, idx) => (
+                  <SelectItem key={idx} value={idx.toString()}>
+                    {verb.infinitive} - {verb.meaning}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-        <div className="mb-6 p-4 bg-blue-50 rounded-lg">
-          <p className="text-lg font-semibold">
-            Infinitive:{" "}
-            <span className="text-blue-600">{selectedVerb.infinitive}</span>
-          </p>
-          <p className="text-gray-700">
-            Meaning: <span className="font-medium">{selectedVerb.meaning}</span>
-          </p>
+          <div className="p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border border-blue-100 shadow-sm flex items-center gap-6">
+            <div>
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">
+                Infinitive
+              </p>
+              <p className="text-2xl font-bold font-arabic">
+                {selectedVerb.infinitive}
+              </p>
+            </div>
+            <div className="h-10 w-px bg-blue-200" />
+            <div>
+              <p className="text-xs font-bold text-purple-600 uppercase tracking-wider mb-1">
+                Meaning
+              </p>
+              <p className="text-xl font-medium text-slate-700">
+                {selectedVerb.meaning}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="rounded-xl border bg-card text-card-foreground shadow-lg overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-linear-to-r from-blue-100 to-purple-100">
-              <TableHead className="font-bold text-right text-sm">
+            <TableRow className="bg-slate-50/80 border-b">
+              <TableHead className="font-bold text-slate-500 w-[150px]">
+                Category
+              </TableHead>
+              <TableHead className="font-bold text-center text-slate-900">
                 Singular
               </TableHead>
-              <TableHead className="font-bold text-right text-sm">
+              <TableHead className="font-bold text-center text-slate-900">
                 Dual
               </TableHead>
-              <TableHead className="font-bold text-right text-sm">
+              <TableHead className="font-bold text-center text-slate-900">
                 Plural
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {/* Row 1: هو - هما (m) - هم */}
-            <TableRow className="hover:bg-blue-50">
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">هُو</div>
-                <div className="text-xs text-gray-600">He</div>
-                <div className="text-base font-semibold text-blue-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.maleHe)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">هُما</div>
-                <div className="text-xs text-gray-600">They (2M)</div>
-                <div className="text-base font-semibold text-green-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.maleDual)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">هُم</div>
-                <div className="text-xs text-gray-600">They (3+M)</div>
-                <div className="text-base font-semibold text-red-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.malePlural)}
-                </div>
-              </TableCell>
-            </TableRow>
-
-            {/* Row 2: هي - هما (f) - هن */}
-            <TableRow className="bg-pink-50 hover:bg-pink-100">
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">هِي</div>
-                <div className="text-xs text-gray-600">She</div>
-                <div className="text-base font-semibold text-blue-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.femaleShe)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">هُما</div>
-                <div className="text-xs text-gray-600">They (2F)</div>
-                <div className="text-base font-semibold text-green-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.femaleDual)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">هُنّ</div>
-                <div className="text-xs text-gray-600">They (3+F)</div>
-                <div className="text-base font-semibold text-red-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.femalePlural)}
-                </div>
-              </TableCell>
-            </TableRow>
-
-            {/* Row 3: أنت (m) - أنتما - أنتم */}
-            <TableRow className=":bg-amber-50">
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">أَنْتَ</div>
-                <div className="text-xs text-gray-600">You (M)</div>
-                <div className="text-base font-semibold text-blue-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.maleYou)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">أَنْتُما</div>
-                <div className="text-xs text-gray-600">You Two (M)</div>
-                <div className="text-base font-semibold text-green-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.yourDualMale)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">أَنْتُم</div>
-                <div className="text-xs text-gray-600">You (3+M)</div>
-                <div className="text-base font-semibold text-red-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.malePlural)}
-                </div>
-              </TableCell>
-            </TableRow>
-
-            {/* Row 4: أنتِ (f) - أنتما - أنتن */}
-            <TableRow className="bg-orange-50 hover:bg-orange-100">
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">أَنْتِ</div>
-                <div className="text-xs text-gray-600">You (F)</div>
-                <div className="text-base font-semibold text-blue-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.femaleYou)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">أَنْتُما</div>
-                <div className="text-xs text-gray-600">You Two (F)</div>
-                <div className="text-base font-semibold text-green-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.yourDualMale)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">أَنْتُنّ</div>
-                <div className="text-xs text-gray-600">You (3+F)</div>
-                <div className="text-base font-semibold text-red-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.femalePlural)}
-                </div>
-              </TableCell>
-            </TableRow>
-
-            {/* Row 5: أنا - نحن - نحن */}
-            <TableRow className="bg-green-50 hover:bg-green-100">
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">أَنَا</div>
-                <div className="text-xs text-gray-600">I</div>
-                <div className="text-base font-semibold text-blue-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.maleI)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">نَحْنُ</div>
-                <div className="text-xs text-gray-600">We (2)</div>
-                <div className="text-base font-semibold text-green-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.we)}
-                </div>
-              </TableCell>
-              <TableCell className="text-center">
-                <div className="font-bold text-lg mb-1">نَحْنُ</div>
-                <div className="text-xs text-gray-600">We (3+)</div>
-                <div className="text-base font-semibold text-red-600 mt-2">
-                  {renderVerbWithSuffix(selectedVerb.past.we)}
-                </div>
-              </TableCell>
-            </TableRow>
+            {tableRows.map((row, idx) => (
+              <TableRow
+                key={idx}
+                className={`${getRowClassName(row.type)} transition-colors border-b last:border-0`}
+              >
+                <TableCell className="font-semibold text-slate-500 text-sm">
+                  {row.category}
+                </TableCell>
+                {[...row.cells].reverse().map((cell, cellIdx) => (
+                  <TableCell key={cellIdx} className="text-center py-6">
+                    <div className="flex flex-col items-center gap-1">
+                      <div
+                        className="font-bold text-xl text-slate-900 mb-0.5"
+                        dir="rtl"
+                      >
+                        {cell.pronoun}
+                      </div>
+                      <div className="text-[10px] uppercase font-bold text-slate-400 tracking-tighter mb-2">
+                        {cell.english}
+                      </div>
+                      <div
+                        className={`text-2xl font-bold ${getVerbColor(row.type)} transition-transform hover:scale-110 duration-200`}
+                        dir="rtl"
+                      >
+                        {renderVerbWithSuffix(
+                          selectedVerb.past[
+                            cell.key as keyof typeof selectedVerb.past
+                          ],
+                        )}
+                      </div>
+                    </div>
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </div>
