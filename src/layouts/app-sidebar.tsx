@@ -63,8 +63,8 @@ const data = {
           url: "pronouns",
         },
         {
-          title: "Starred",
-          url: "/starred",
+          title: "Started",
+          url: "/started",
         },
         {
           title: "Settings",

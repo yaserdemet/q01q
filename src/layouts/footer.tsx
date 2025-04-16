@@ -4,10 +4,12 @@ import logo from "@/assets/logo.webp";
 import { useLoaderData } from "react-router-dom";
 
 export default function Footer() {
-  const { city, country } = useLoaderData() as {
+  const data = useLoaderData() as {
     city: string;
     country: string;
   };
+  const city = data?.city || "Unknown City";
+  const country = data?.country || "Unknown Country";
 
   return (
     <footer className="mt-auto">

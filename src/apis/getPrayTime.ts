@@ -12,6 +12,11 @@ export const getPrayTime = async () => {
 };
 
 export async function getLocationFromIP() {
-  const res = await fetch("https://ipapi.co/json/");
-  return await res.json();
+  try {
+    const res = await fetch("https://ipapi.co/json/");
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching location:", error);
+    // throw error;
+  }
 }

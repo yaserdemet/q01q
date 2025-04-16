@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Pen } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -16,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Header from "@/components/ui/Header";
 
 interface VerbConjugation {
   infinitive: string;
@@ -209,7 +211,7 @@ const tableRows = [
   },
 ];
 
-export default function StarredPage() {
+export default function StartedPage() {
   const [selectedVerbIndex, setSelectedVerbIndex] = useState(0);
   const selectedVerb = verbs[selectedVerbIndex];
 
@@ -240,117 +242,115 @@ export default function StarredPage() {
   };
 
   return (
-    <div className="p-8 max-w-6xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">
-          Arabic Verbs - Past Tense
-        </h1>
-        <p className="text-muted-foreground mb-6">
-          Select a verb to see its conjugations for different genders and
-          numbers
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
-          <div className="max-w-xs">
-            <label className="text-sm font-semibold mb-2 block text-slate-700">
-              Choose a verb:
-            </label>
-            <Select
-              value={selectedVerbIndex.toString()}
-              onValueChange={(value) => setSelectedVerbIndex(parseInt(value))}
-            >
-              <SelectTrigger className="w-full bg-white shadow-sm border-slate-200">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {verbs.map((verb, idx) => (
-                  <SelectItem key={idx} value={idx.toString()}>
-                    {verb.infinitive} - {verb.meaning}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border border-blue-100 shadow-sm flex items-center gap-6">
-            <div>
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">
-                Infinitive
-              </p>
-              <p className="text-2xl font-bold font-arabic">
-                {selectedVerb.infinitive}
-              </p>
+    <Header
+      header="Arabic Verbs - Past Tense"
+      explanation="Select a verb to see its conjugations for different genders and numbers"
+      Icon={Pen}
+    >
+      <div className="mt-12 max-w-6xl">
+        <div className="mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+            <div className="max-w-xs">
+              <label className="text-sm font-semibold mb-2 block text-slate-700">
+                Choose a verb:
+              </label>
+              <Select
+                value={selectedVerbIndex.toString()}
+                onValueChange={(value) => setSelectedVerbIndex(parseInt(value))}
+              >
+                <SelectTrigger className="w-full bg-white shadow-sm border-slate-200">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {verbs.map((verb, idx) => (
+                    <SelectItem key={idx} value={idx.toString()}>
+                      {verb.infinitive} - {verb.meaning}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-            <div className="h-10 w-px bg-blue-200" />
-            <div>
-              <p className="text-xs font-bold text-purple-600 uppercase tracking-wider mb-1">
-                Meaning
-              </p>
-              <p className="text-xl font-medium text-slate-700">
-                {selectedVerb.meaning}
-              </p>
+
+            <div className="p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border border-blue-100 shadow-sm flex items-center gap-6">
+              <div>
+                <p className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">
+                  Infinitive
+                </p>
+                <p className="text-2xl font-bold font-arabic">
+                  {selectedVerb.infinitive}
+                </p>
+              </div>
+              <div className="h-10 w-px bg-blue-200" />
+              <div>
+                <p className="text-xs font-bold text-purple-600 uppercase tracking-wider mb-1">
+                  Meaning
+                </p>
+                <p className="text-xl font-medium text-slate-700">
+                  {selectedVerb.meaning}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="rounded-xl border bg-card text-card-foreground shadow-lg overflow-hidden">
-        <Table>
-          <TableHeader>
-            <TableRow className="bg-slate-50/80 border-b">
-              <TableHead className="font-bold text-slate-500 w-[150px]">
-                Category
-              </TableHead>
-              <TableHead className="font-bold text-center text-slate-900">
-                Singular
-              </TableHead>
-              <TableHead className="font-bold text-center text-slate-900">
-                Dual
-              </TableHead>
-              <TableHead className="font-bold text-center text-slate-900">
-                Plural
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {tableRows.map((row, idx) => (
-              <TableRow
-                key={idx}
-                className={`${getRowClassName(row.type)} transition-colors border-b last:border-0`}
-              >
-                <TableCell className="font-semibold text-slate-500 text-sm">
-                  {row.category}
-                </TableCell>
-                {[...row.cells].reverse().map((cell, cellIdx) => (
-                  <TableCell key={cellIdx} className="text-center py-6">
-                    <div className="flex flex-col items-center gap-1">
-                      <div
-                        className="font-bold text-xl text-slate-900 mb-0.5"
-                        dir="rtl"
-                      >
-                        {cell.pronoun}
-                      </div>
-                      <div className="text-[10px] uppercase font-bold text-slate-400 tracking-tighter mb-2">
-                        {cell.english}
-                      </div>
-                      <div
-                        className={`text-2xl font-bold ${getVerbColor(row.type)} transition-transform hover:scale-110 duration-200`}
-                        dir="rtl"
-                      >
-                        {renderVerbWithSuffix(
-                          selectedVerb.past[
-                            cell.key as keyof typeof selectedVerb.past
-                          ],
-                        )}
-                      </div>
-                    </div>
-                  </TableCell>
-                ))}
+        <div className="rounded-xl border bg-card text-card-foreground shadow-lg overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-slate-50/80 border-b">
+                <TableHead className="font-bold text-slate-500 w-[150px]">
+                  Category
+                </TableHead>
+                <TableHead className="font-bold text-center text-slate-900">
+                  Singular
+                </TableHead>
+                <TableHead className="font-bold text-center text-slate-900">
+                  Dual
+                </TableHead>
+                <TableHead className="font-bold text-center text-slate-900">
+                  Plural
+                </TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {tableRows.map((row, idx) => (
+                <TableRow
+                  key={idx}
+                  className={`${getRowClassName(row.type)} transition-colors border-b last:border-0`}
+                >
+                  <TableCell className="font-semibold text-slate-500 text-sm">
+                    {row.category}
+                  </TableCell>
+                  {[...row.cells].reverse().map((cell, cellIdx) => (
+                    <TableCell key={cellIdx} className="text-center py-6">
+                      <div className="flex flex-col items-center gap-1">
+                        <div
+                          className="font-bold text-xl text-slate-900 mb-0.5"
+                          dir="rtl"
+                        >
+                          {cell.pronoun}
+                        </div>
+                        <div className="text-[10px] uppercase font-bold text-slate-400 tracking-tighter mb-2">
+                          {cell.english}
+                        </div>
+                        <div
+                          className={`text-2xl font-bold ${getVerbColor(row.type)} transition-transform hover:scale-110 duration-200`}
+                          dir="rtl"
+                        >
+                          {renderVerbWithSuffix(
+                            selectedVerb.past[
+                              cell.key as keyof typeof selectedVerb.past
+                            ],
+                          )}
+                        </div>
+                      </div>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
-    </div>
+    </Header>
   );
 }

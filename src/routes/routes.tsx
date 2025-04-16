@@ -4,10 +4,11 @@ import Page from "@/pages/page1";
 import PlaygroundPage from "@/pages/playground";
 import HistoryPage from "@/pages/Pronouns";
 import StarredPage from "@/pages/starred";
-import SettingsPage from "@/pages/settings";
+import SettingsPage from "@/pages/Settings";
 import { getLocationFromIP } from "@/apis/getPrayTime";
 
 import ErrorPage from "@/pages/ErrorPage";
+import StartedPage from "@/pages/starred";
 
 export const router = createBrowserRouter([
   {
@@ -32,9 +33,9 @@ export const router = createBrowserRouter([
         handle: { title: "History" },
       },
       {
-        path: "starred",
-        element: <StarredPage />,
-        handle: { title: "Starred" },
+        path: "started",
+        element: <StartedPage />,
+        handle: { title: "Started" },
       },
       {
         path: "settings",
