@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "@/layouts/layout";
-import Page from "@/pages/page1";
+import Page from "@/pages/Home";
 import PlaygroundPage from "@/pages/playground";
 import HistoryPage from "@/pages/Pronouns";
 import StarredPage from "@/pages/starred";
