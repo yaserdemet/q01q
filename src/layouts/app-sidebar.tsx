@@ -63,8 +63,12 @@ const data = {
           url: "pronouns",
         },
         {
-          title: "Started",
-          url: "/started",
+          title: "Past Verbs",
+          url: "/past-verbs",
+        },
+          {
+          title: "Present Verbs",
+          url: "/present-verbs",
         },
         {
           title: "Settings",

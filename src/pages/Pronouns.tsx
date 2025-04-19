@@ -2,7 +2,7 @@ import Pronoun from "@/components/pronouns/Pronoun";
 import Header from "@/components/ui/Header";
 import MetaData from "@/lib/MetaData";
 import { User } from "lucide-react";
-export default function HistoryPage() {
+export default function PronounsPage() {
   return (
     <>
       <MetaData

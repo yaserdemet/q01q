@@ -2,13 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "@/layouts/layout";
 import Page from "@/pages/Home";
 import PlaygroundPage from "@/pages/playground";
-import HistoryPage from "@/pages/Pronouns";
-import StarredPage from "@/pages/starred";
 import SettingsPage from "@/pages/Settings";
 import { getLocationFromIP } from "@/apis/getPrayTime";
 
 import ErrorPage from "@/pages/ErrorPage";
-import StartedPage from "@/pages/starred";
+import PastVerbPage from "@/pages/PastVerb";
+import PronounsPage from "@/pages/Pronouns";
+import PresentVerbs from "@/pages/PresentVerbs";
 
 export const router = createBrowserRouter([
   {
@@ -29,13 +29,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "pronouns",
-        element: <HistoryPage />,
-        handle: { title: "History" },
+        element: <PronounsPage />,
+        handle: { title: "Pronouns" },
       },
       {
-        path: "started",
-        element: <StartedPage />,
-        handle: { title: "Started" },
+        path : "present-verbs",
+        element : <PresentVerbs />,
+        handle: { title: "Present Verbs" },
+
+      },
+      {
+        path: "past-verbs",
+        element: <PastVerbPage />,
+        handle: { title: "Past Verbs" },
       },
       {
         path: "settings",

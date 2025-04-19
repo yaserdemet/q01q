@@ -211,7 +211,7 @@ const tableRows = [
   },
 ];
 
-export default function StartedPage() {
+export default function PastVerbPage() {
   const [selectedVerbIndex, setSelectedVerbIndex] = useState(0);
   const selectedVerb = verbs[selectedVerbIndex];
 
