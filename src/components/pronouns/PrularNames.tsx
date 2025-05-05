@@ -32,29 +32,137 @@ const nouns: NounData[] = [
   { base: "مُسْلِم", meaning: "Müslüman" },
 ];
 
+interface FormSet {
+  singular: string;
+  dual: string;
+  plural: string;
+  dualNasb: string;
+  pluralNasb: string;
+}
+
+const NounTable = ({
+  title,
+  subtitle,
+  genderIcon,
+  bgColor,
+  textColor,
+  forms,
+}: {
+  title: string;
+  subtitle: string;
+  genderIcon: string;
+  bgColor: string;
+  textColor: string;
+  forms: FormSet;
+}) => (
+  <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white">
+    <div
+      className={`${bgColor} p-4 border-b border-slate-100 flex items-center justify-between`}
+    >
+      <h2
+        className={`${textColor} font-semibold text-lg flex items-center gap-2`}
+      >
+        <span className="opacity-50 text-base">{genderIcon}</span>
+        {title}
+      </h2>
+      <span
+        className={`${textColor} opacity-60 text-xs font-medium uppercase tracking-wider`}
+      >
+        {subtitle}
+      </span>
+    </div>
+    <Table>
+      <TableHeader>
+        <TableRow className="bg-slate-50/30 border-b border-slate-50">
+          <TableHead className="py-4 font-medium text-center text-slate-500">
+            Tekil (Müfred)
+          </TableHead>
+          <TableHead className="py-4 font-medium text-center text-slate-500">
+            İkili (Müsenna)
+          </TableHead>
+          <TableHead className="py-4 font-medium text-center text-slate-500">
+            Çoğul (Cem)
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell className="text-center py-10">
+            <div className="flex flex-col items-center gap-1">
+              <span
+                className="text-4xl font-semibold text-slate-700 leading-relaxed"
+                dir="rtl"
+              >
+                {forms.singular}
+              </span>
+              <span className="text-[10px] text-slate-300 font-medium">
+                Merfu
+              </span>
+            </div>
+          </TableCell>
+          <TableCell className="text-center py-10 border-x border-slate-50">
+            <div className="flex flex-col items-center gap-1">
+              <div>
+                <span
+                  className={`text-4xl font-semibold ${textColor.replace("text-", "text-opacity-100 text-")} leading-relaxed`}
+                  dir="rtl"
+                >
+                  {forms.dual.slice(-5)}
+                </span>
+                <span
+                  className={`text-4xl font-semibold leading-relaxed`}
+                  dir="rtl"
+                >
+                  {forms.dual.slice(0, -5)}
+                </span>
+              </div>
+
+              <span className="text-[10px] text-slate-300 font-medium">
+                Nasb/Cer: {forms.dualNasb}
+              </span>
+            </div>
+          </TableCell>
+          <TableCell className="text-center py-10">
+            <div className="flex flex-col items-center gap-1">
+              <span
+                className={`text-4xl font-semibold ${textColor.replace("text-", "text-opacity-100 text-")} leading-relaxed`}
+                dir="rtl"
+              >
+                {forms.plural}
+              </span>
+              <span className="text-[10px] text-slate-300 font-medium">
+                Nasb/Cer: {forms.pluralNasb}
+              </span>
+            </div>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </div>
+);
+
 const PrularNames = () => {
   const [selectedNoun, setSelectedNoun] = useState<NounData>(nouns[0]);
 
-  const generateForms = (base: string) => {
-    return {
-      masculine: {
-        singular: base,
-        dual: base + "َانِ",
-        plural: base + "ُونَ",
-      },
-      feminine: {
-        singular: base + "َة",
-        dual: base + "َتَانِ",
-        plural: base + "َات",
-      },
-    };
+  const formsData = {
+    masculine: {
+      singular: selectedNoun.base,
+      dual: selectedNoun.base + "َانِ",
+      plural: selectedNoun.base + "ُونَ",
+      dualNasb: selectedNoun.base + "َيْنِ",
+      pluralNasb: selectedNoun.base + "ِينَ",
+    },
+    feminine: {
+      singular: selectedNoun.base + "َة",
+      dual: selectedNoun.base + "َتَانِ",
+      plural: selectedNoun.base + "َاتٌ",
+      dualNasb: selectedNoun.base + "َتَيْنِ",
+      pluralNasb: selectedNoun.base + "َاتٍ",
+    },
   };
-
-  const forms = generateForms(selectedNoun.base);
 
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-6 animate-in fade-in duration-500">
-      {/* Header & Selector */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl border border-slate-100 bg-slate-50/50">
         <div className="w-full md:w-80">
           <Select
@@ -95,147 +203,22 @@ const PrularNames = () => {
       </div>
 
       <div className="grid gap-6">
-        {/* Eril / Masculine Table */}
-        <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white">
-          <div className="bg-blue-50/50 p-4 border-b border-slate-100 flex items-center justify-between">
-            <h2 className="text-blue-700 font-semibold text-lg flex items-center gap-2">
-              <span className="opacity-50 text-base">♂</span>
-              Eril (Müzekker)
-            </h2>
-            <span className="text-blue-600/60 text-xs font-medium uppercase tracking-wider">
-              Düzenli Eril Çoğul
-            </span>
-          </div>
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-slate-50/30 border-b border-slate-50">
-                <TableHead className="py-4 font-medium text-center text-slate-500">
-                  Tekil (Müfred)
-                </TableHead>
-                <TableHead className="py-4 font-medium text-center text-slate-500">
-                  İkili (Müsenna)
-                </TableHead>
-                <TableHead className="py-4 font-medium text-center text-slate-500">
-                  Çoğul (Cem-i Müzekker)
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell className="text-center py-10">
-                  <div className="flex flex-col items-center gap-1">
-                    <span
-                      className="text-4xl font-semibold text-slate-700 leading-relaxed"
-                      dir="rtl"
-                    >
-                      {forms.masculine.singular}
-                    </span>
-                    <span className="text-[10px] text-slate-300 font-medium">
-                      Merfu
-                    </span>
-                  </div>
-                </TableCell>
-                <TableCell className="text-center py-10 border-x border-slate-50">
-                  <div className="flex flex-col items-center gap-1">
-                    <span
-                      className="text-4xl font-semibold text-blue-500 leading-relaxed"
-                      dir="rtl"
-                    >
-                      {forms.masculine.dual}
-                    </span>
-                    <span className="text-[10px] text-slate-300 font-medium">
-                      Nasb/Cer: {forms.masculine.singular}َيْنِ
-                    </span>
-                  </div>
-                </TableCell>
-                <TableCell className="text-center py-10">
-                  <div className="flex flex-col items-center gap-1">
-                    <span
-                      className="text-4xl font-semibold text-indigo-500 leading-relaxed"
-                      dir="rtl"
-                    >
-                      {forms.masculine.plural}
-                    </span>
-                    <span className="text-[10px] text-slate-300 font-medium">
-                      Nasb/Cer: {forms.masculine.singular}ِينَ
-                    </span>
-                  </div>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
-
-        {/* Dişi / Feminine Table */}
-        <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white">
-          <div className="bg-rose-50/50 p-4 border-b border-slate-100 flex items-center justify-between">
-            <h2 className="text-rose-700 font-semibold text-lg flex items-center gap-2">
-              <span className="opacity-50 text-base">♀</span>
-              Dişi (Müennes)
-            </h2>
-            <span className="text-rose-600/60 text-xs font-medium uppercase tracking-wider">
-              Düzenli Dişi Çoğul
-            </span>
-          </div>
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-slate-50/30 border-b border-slate-50">
-                <TableHead className="py-4 font-medium text-center text-slate-500">
-                  Tekil (Müfred)
-                </TableHead>
-                <TableHead className="py-4 font-medium text-center text-slate-500">
-                  İkili (Müsenna)
-                </TableHead>
-                <TableHead className="py-4 font-medium text-center text-slate-500">
-                  Çoğul (Cem-i Müennes)
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell className="text-center py-10">
-                  <div className="flex flex-col items-center gap-1">
-                    <span
-                      className="text-4xl font-semibold text-slate-700 leading-relaxed"
-                      dir="rtl"
-                    >
-                      {forms.feminine.singular}
-                    </span>
-                    <span className="text-[10px] text-slate-300 font-medium">
-                      Merfu
-                    </span>
-                  </div>
-                </TableCell>
-                <TableCell className="text-center py-10 border-x border-slate-50">
-                  <div className="flex flex-col items-center gap-1">
-                    <span
-                      className="text-4xl font-semibold text-rose-500 leading-relaxed"
-                      dir="rtl"
-                    >
-                      {forms.feminine.dual}
-                    </span>
-                    <span className="text-[10px] text-slate-300 font-medium">
-                      Nasb/Cer: {selectedNoun.base}َتَيْنِ
-                    </span>
-                  </div>
-                </TableCell>
-                <TableCell className="text-center py-10">
-                  <div className="flex flex-col items-center gap-1">
-                    <span
-                      className="text-4xl font-semibold text-pink-500 leading-relaxed"
-                      dir="rtl"
-                    >
-                      {forms.feminine.plural}ٌ
-                    </span>
-                    <span className="text-[10px] text-slate-300 font-medium">
-                      Nasb/Cer: {forms.feminine.plural}ٍ
-                    </span>
-                  </div>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
+        <NounTable
+          title="Eril (Müzekker)"
+          subtitle="Düzenli Eril Çoğul"
+          genderIcon="♂"
+          bgColor="bg-blue-100"
+          textColor="text-blue-700"
+          forms={formsData.masculine}
+        />
+        <NounTable
+          title="Dişi (Müennes)"
+          subtitle="Düzenli Dişi Çoğul"
+          genderIcon="♀"
+          bgColor="bg-rose-100"
+          textColor="text-rose-700"
+          forms={formsData.feminine}
+        />
       </div>
 
       <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
