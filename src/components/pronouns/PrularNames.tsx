@@ -7,6 +7,7 @@ import {
   SelectValue,
   SelectGroup,
 } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
   TableBody,
@@ -53,7 +54,7 @@ const NounTable = ({
   genderIcon: string;
   bgColor: string;
   textColor: string;
-  forms: FormSet;
+  forms: any;
 }) => (
   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white">
     <div
@@ -124,12 +125,20 @@ const NounTable = ({
           </TableCell>
           <TableCell className="text-center py-10">
             <div className="flex flex-col items-center gap-1">
-              <span
-                className={`text-4xl font-semibold ${textColor.replace("text-", "text-opacity-100 text-")} leading-relaxed`}
-                dir="rtl"
-              >
-                {forms.plural}
-              </span>
+              <div>
+                <span
+                  className={`text-4xl font-semibold ${textColor.replace("text-", "text-opacity-100 text-")} leading-relaxed`}
+                  dir="rtl"
+                >
+                  {forms.plural.slice(-5)}
+                </span>
+                <span
+                  className={`text-4xl font-semibold leading-relaxed`}
+                  dir="rtl"
+                >
+                  {forms.plural.slice(0, -5)}
+                </span>
+              </div>
               <span className="text-[10px] text-slate-300 font-medium">
                 Nasb/Cer: {forms.pluralNasb}
               </span>
@@ -143,23 +152,50 @@ const NounTable = ({
 
 const PrularNames = () => {
   const [selectedNoun, setSelectedNoun] = useState<NounData>(nouns[0]);
-
-  const formsData = {
+  const [roles, setRoles] = useState("");
+//   const formsData = {
+//     masculine: {
+//       singular: selectedNoun.base,
+//       dual: selectedNoun.base + "َانِ",
+//       plural: selectedNoun.base + "ُونَ",
+//       dualNasb: selectedNoun.base + "َيْنِ",
+//       pluralNasb: selectedNoun.base + "ِينَ",
+//     },
+//     feminine: {
+//       singular: selectedNoun.base + "َة",
+//       dual: selectedNoun.base + "َتَانِ",
+//       plural: selectedNoun.base + "َاتٌ",
+//       dualNasb: selectedNoun.base + "َتَيْنِ",
+//       pluralNasb: selectedNoun.base + "َاتٍ",
+//     },
+//   };
+const formsData = {
+  subject: { // FAIL (merfû‘ / damme)
     masculine: {
       singular: selectedNoun.base,
       dual: selectedNoun.base + "َانِ",
       plural: selectedNoun.base + "ُونَ",
-      dualNasb: selectedNoun.base + "َيْنِ",
-      pluralNasb: selectedNoun.base + "ِينَ",
     },
     feminine: {
       singular: selectedNoun.base + "َة",
       dual: selectedNoun.base + "َتَانِ",
-      plural: selectedNoun.base + "َاتٌ",
-      dualNasb: selectedNoun.base + "َتَيْنِ",
-      pluralNasb: selectedNoun.base + "َاتٍ",
+      plural: selectedNoun.base + "َاتُ",
     },
-  };
+  },
+
+  object: { // MEF‘ÛL + CÂR–MECRÛR (mansûb / mecrûr)
+    masculine: {
+      singular: selectedNoun.base,
+      dual: selectedNoun.base + "َيْنِ",
+      plural: selectedNoun.base + "ِينَ",
+    },
+    feminine: {
+      singular: selectedNoun.base + "َة",
+      dual: selectedNoun.base + "َتَيْنِ",
+      plural: selectedNoun.base + "َاتِ",
+    },
+  },
+};
 
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-6 animate-in fade-in duration-500">
@@ -200,6 +236,18 @@ const PrularNames = () => {
             </SelectContent>
           </Select>
         </div>
+        <Tabs
+          onValueChange={(val) => setRoles(val)}
+          defaultValue="fail"
+          className="w-100"
+        >
+          <TabsList>
+            <TabsTrigger value="fail">Fail</TabsTrigger>
+            <TabsTrigger value="meful">Meful</TabsTrigger>
+          </TabsList>
+          <TabsContent value="fail">Fail Roles</TabsContent>
+          <TabsContent value="meful">Meful Roles</TabsContent>
+        </Tabs>
       </div>
 
       <div className="grid gap-6">
@@ -209,7 +257,7 @@ const PrularNames = () => {
           genderIcon="♂"
           bgColor="bg-blue-100"
           textColor="text-blue-700"
-          forms={formsData.masculine}
+          forms={roles === "fail" ? formsData.subject.masculine : formsData.object.masculine}
         />
         <NounTable
           title="Dişi (Müennes)"
@@ -217,7 +265,7 @@ const PrularNames = () => {
           genderIcon="♀"
           bgColor="bg-rose-100"
           textColor="text-rose-700"
-          forms={formsData.feminine}
+          forms={roles === "fail" ? formsData.subject.feminine : formsData.object.feminine}
         />
       </div>
 
