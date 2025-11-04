@@ -8,12 +8,8 @@ import {
 } from "@/components/ui/table";
 
 import { rows, header, renderAvatars } from "./data";
-import { useSpeech } from "@/hooks/useSpeech";
-import { Button } from "@/components/ui/button";
-import { Volume2 } from "lucide-react";
 
 const Pronoun = () => {
-  const { speak } = useSpeech();
   return (
     <div className="rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden">
       <Table>
@@ -31,7 +27,7 @@ const Pronoun = () => {
           {rows.map((row) => (
             <TableRow
               key={row.id}
-              className="hover:bg-muted/30 transition-colors"
+              className=  {` ${row.type === "male" ? "hover:bg-blue-100/100 dark:hover:bg-blue-900/10" : row.type === "female" ? "hover:bg-pink-100/100 dark:hover:bg-pink-900/10" : "hover:bg-purple-100/100 dark:hover:bg-purple-900/10" } transition-colors group`}
             >
               <TableCell className="font-medium text-slate-500 dark:text-slate-400">
                 {row.category}
@@ -45,28 +41,34 @@ const Pronoun = () => {
                       {renderAvatars(row.type, index)}
 
                       <div className="flex flex-col items-center gap-2">
-                        <Button
-                          variant="ghost"
-                          size="lg"
-                          className="h-auto py-2 px-4 hover:bg-muted group transition-all duration-300"
-                          onClick={() => speak("merhbaa")}
-                        >
-                          <div className="flex flex-col items-center gap-1">
-                            <span
-                              className={`${
-                                row.type === "male"
-                                  ? "text-blue-600 dark:text-blue-400"
-                                  : row.type === "female"
-                                    ? "text-pink-600 dark:text-pink-400"
-                                    : "text-purple-700 dark:text-purple-400"
-                              } text-3xl font-bold tracking-wide`}
-                              dir="rtl"
-                            >
-                              {word}
-                            </span>
-                            <Volume2 className="h-4 w-4 text-slate-400 group-hover:text-primary group-hover:scale-110 transition-all" />
-                          </div>
-                        </Button>
+                        <div className="flex flex-col items-center gap-1">
+                          <span
+                            className={`${
+                              row.type === "male"
+                                ? "text-blue-600 dark:text-blue-400"
+                                : row.type === "female"
+                                  ? "text-pink-600 dark:text-pink-400"
+                                  : "text-purple-700 dark:text-purple-400"
+                            } text-3xl font-bold tracking-wide`}
+                            dir="rtl"
+                          >
+                            {word}
+                          </span>
+                        
+                        </div>
+                        <div className="flex flex-col items-center gap-1">
+                          <span  className={`${
+                              row.type === "male"
+                                ? "text-blue-600 dark:text-blue-400"
+                                : row.type === "female"
+                                  ? "text-pink-600 dark:text-pink-400"
+                                  : "text-purple-700 dark:text-purple-400"
+                            } text-xl font-bold tracking-wide`}
+                            dir="rtl">
+                          {[...row.suffix].reverse()[index]}
+                          </span>
+                        
+                        </div>
 
                         <span className="text-sm font-medium text-slate-500 dark:text-slate-400 capitalize">
                           {translation}

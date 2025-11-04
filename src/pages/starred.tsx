@@ -273,7 +273,7 @@ export default function StarredPage() {
             </TableRow>
 
             {/* Row 3: أنت (m) - أنتما - أنتم */}
-            <TableRow className="hover:bg-amber-50">
+            <TableRow className=":bg-amber-50">
               <TableCell className="text-center">
                 <div className="font-bold text-lg mb-1">أَنْتَ</div>
                 <div className="text-xs text-gray-600">You (M)</div>

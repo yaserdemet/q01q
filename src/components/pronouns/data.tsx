@@ -12,6 +12,7 @@ export const rows = [
     arabic: ["هُوَ", "هُمَا", "هُمْ"],
     english: ["He", "They (2)", "They (3+)"],
     type: "male",
+    suffix: ["هُ", "هُمَا", "هُمْ"],
   },
   {
     id: 2,
@@ -19,6 +20,7 @@ export const rows = [
     arabic: ["هِيَ", "هُمَا", "هُنَّ"],
     english: ["She", "They (2)", "They (3+)"],
     type: "female",
+    suffix: ["هَا", "هُمَا", "هُنَّ"],
   },
   {
     id: 3,
@@ -26,6 +28,7 @@ export const rows = [
     arabic: ["أَنْتَ", "أَنْتُمَا", "أَنْتُمْ"],
     english: ["You", "You (2)", "You (3+)"],
     type: "male",
+    suffix: ["كَ", "كُمَا", "كُمْ"],
   },
   {
     id: 4,
@@ -33,6 +36,7 @@ export const rows = [
     arabic: ["أَنْتِ", "أَنْتُمَا", "أَنْتُنَّ"],
     english: ["You", "You (2)", "You (3+)"],
     type: "female",
+    suffix: ["كِ", "كُمَا", "كُنَّ"],
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ export const rows = [
     arabic: ["أَنَا", "نَحْنُ", "نَحْنُ"],
     english: ["I", "We (2)", "We (3+)"],
     type: "male and female",
+    suffix: ["ي نِي ", "نَا", "نَا"],
   },
 ];
 export const header = [
