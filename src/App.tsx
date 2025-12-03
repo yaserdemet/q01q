@@ -1,16 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { routes } from "./routes/routes"
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/routes";
 
 export function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        {routes.map((route) => (
-          <Route key={route.path} path={route.path} element={route.element} />
-        ))}
-      </Routes>
-    </BrowserRouter>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;

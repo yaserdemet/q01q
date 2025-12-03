@@ -1,5 +1,5 @@
-import { ReactNode } from "react"
-import { AppSidebar } from "@/components/app-sidebar"
+import { ReactNode } from "react";
+import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,18 +7,19 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import Footer from "@/components/footer";
 
 interface LayoutProps {
-  children: ReactNode
-  pageTitle?: string
-  breadcrumbItems?: Array<{ label: string; href?: string }>
+  children: ReactNode;
+  pageTitle?: string;
+  breadcrumbItems?: Array<{ label: string; href?: string }>;
 }
 
 export default function Layout({
@@ -70,7 +71,8 @@ export default function Layout({
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
+        <Footer />
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }

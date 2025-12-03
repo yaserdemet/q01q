@@ -1,61 +1,56 @@
-import { ReactNode } from "react"
-import Layout from "@/components/layout"
-import Page from "@/pages/page1"
-import PlaygroundPage from "@/pages/playground"
-import HistoryPage from "@/pages/history"
-import StarredPage from "@/pages/starred"
-import SettingsPage from "@/pages/settings"
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "@/components/layout";
+import Page from "@/pages/page1";
+import PlaygroundPage from "@/pages/playground";
+import HistoryPage from "@/pages/history";
+import StarredPage from "@/pages/starred";
+import SettingsPage from "@/pages/settings";
+import { getLocationFromIP, getPrayTime } from "@/apis/getPrayTime";
 
-export interface AppRoute {
-  path: string
-  label: string
-  element: ReactNode
-}
-
-export const routes: AppRoute[] = [
+export const router = createBrowserRouter([
   {
     path: "/",
-    label: "Home",
     element: (
       <Layout pageTitle="Home">
         <Page />
       </Layout>
     ),
+    loader: getLocationFromIP,
   },
   {
     path: "/playground",
-    label: "Playground",
     element: (
       <Layout pageTitle="Playground">
         <PlaygroundPage />
       </Layout>
     ),
+    loader: getLocationFromIP,
   },
   {
     path: "/history",
-    label: "History",
     element: (
       <Layout pageTitle="History">
         <HistoryPage />
       </Layout>
     ),
+    loader: getLocationFromIP,
   },
   {
     path: "/starred",
-    label: "Starred",
     element: (
       <Layout pageTitle="Starred">
         <StarredPage />
       </Layout>
     ),
+    loader: getLocationFromIP,
   },
   {
     path: "/settings",
-    label: "Settings",
     element: (
       <Layout pageTitle="Settings">
         <SettingsPage />
       </Layout>
     ),
+    loader: getLocationFromIP,
   },
-]
+]);
