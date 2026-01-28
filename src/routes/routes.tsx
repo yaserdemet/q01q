@@ -3,8 +3,7 @@ import Layout from "@/layouts/layout";
 import Page from "@/pages/Home";
 import PlaygroundPage from "@/pages/playground";
 import HistoryPage from "@/pages/Pronouns";
-import StarredPage from "@/pages/starred";
-import SettingsPage from "@/pages/Settings";
+import SettingsPage from "@/pages/settings";
 import { getLocationFromIP } from "@/apis/getPrayTime";
 
 import ErrorPage from "@/pages/ErrorPage";
