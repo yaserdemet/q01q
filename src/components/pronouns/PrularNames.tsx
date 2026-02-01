@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -22,6 +22,14 @@ interface NounData {
   meaning: string;
 }
 
+interface NounForms {
+  singular: string;
+  dual: string;
+  plural: string;
+  dualNasb?: string;
+  pluralNasb?: string;
+}
+
 const nouns: NounData[] = [
   { base: "مُعَلِّم", meaning: "Öğretmen" },
   { base: "طَالِب", meaning: "Öğrenci" },
@@ -32,14 +40,6 @@ const nouns: NounData[] = [
   { base: "تَاجِر", meaning: "Tüccar" },
   { base: "مُسْلِم", meaning: "Müslüman" },
 ];
-
-interface FormSet {
-  singular: string;
-  dual: string;
-  plural: string;
-  dualNasb: string;
-  pluralNasb: string;
-}
 
 const NounTable = ({
   title,
@@ -54,7 +54,7 @@ const NounTable = ({
   genderIcon: string;
   bgColor: string;
   textColor: string;
-  forms: any;
+  forms: NounForms;
 }) => (
   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white">
     <div

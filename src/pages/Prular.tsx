@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "@/components/ui/Header";
 import { Pen } from "lucide-react";
 import MetaData from "@/lib/MetaData";
