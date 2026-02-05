@@ -2,7 +2,6 @@ import Bab from "@/components/babs/Bab";
 import Header from "@/components/ui/Header";
 import MetaData from "@/lib/MetaData";
 import { DoorOpen } from "lucide-react";
-import React from "react";
 
 const Babs = () => {
   return (
