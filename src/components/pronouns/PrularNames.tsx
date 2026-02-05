@@ -22,14 +22,6 @@ interface NounData {
   meaning: string;
 }
 
-interface NounForms {
-  singular: string;
-  dual: string;
-  plural: string;
-  dualNasb?: string;
-  pluralNasb?: string;
-}
-
 const nouns: NounData[] = [
   { base: "مُعَلِّم", meaning: "Öğretmen" },
   { base: "طَالِب", meaning: "Öğrenci" },
