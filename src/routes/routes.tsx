@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "@/layouts/layout";
 import Page from "@/pages/Home";
-import PlaygroundPage from "@/pages/playground";
+import PlaygroundPage from "@/pages/Playground";
 import SettingsPage from "@/pages/Settings";
 import { getLocationFromIP } from "@/apis/getPrayTime";
 

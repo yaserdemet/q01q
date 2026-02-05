@@ -4,6 +4,7 @@ import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { settingsValue, StatusCheck } from "./statusCheck";
 
 interface BatteryManager extends EventTarget {
+<<<<<<< HEAD
   charging: boolean;
   chargingTime: number;
   dischargingTime: number;
@@ -16,13 +17,23 @@ interface BatteryManager extends EventTarget {
 
 interface NavigatorWithBattery extends Navigator {
   getBattery?: () => Promise<BatteryManager>;
+=======
+  level: number;
+  charging: boolean;
+>>>>>>> f483bff1d44a6cdf18f3f27eafb0b3c205ade355
 }
 
 const Status = () => {
   const [batteryStatus, setBatteryStatus] = React.useState<number | string>(0);
 
   React.useEffect(() => {
+<<<<<<< HEAD
     const nav = navigator as NavigatorWithBattery;
+=======
+    const nav = navigator as Navigator & {
+      getBattery?: () => Promise<BatteryManager>;
+    };
+>>>>>>> f483bff1d44a6cdf18f3f27eafb0b3c205ade355
     if (nav.getBattery) {
       nav.getBattery().then((battery) => {
         // Set initial battery status

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -20,6 +20,14 @@ import {
 interface NounData {
   base: string;
   meaning: string;
+}
+
+interface NounForms {
+  singular: string;
+  dual: string;
+  plural: string;
+  dualNasb?: string;
+  pluralNasb?: string;
 }
 
 const nouns: NounData[] = [
