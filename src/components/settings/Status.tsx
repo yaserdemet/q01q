@@ -3,12 +3,28 @@ import { Input } from "@/components/ui/input";
 import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { settingsValue, StatusCheck } from "./statusCheck";
 
+interface BatteryManager extends EventTarget {
+  charging: boolean;
+  chargingTime: number;
+  dischargingTime: number;
+  level: number;
+  onchargingchange: ((this: BatteryManager, ev: Event) => void) | null;
+  onchargingtimechange: ((this: BatteryManager, ev: Event) => void) | null;
+  ondischargingtimechange: ((this: BatteryManager, ev: Event) => void) | null;
+  onlevelchange: ((this: BatteryManager, ev: Event) => void) | null;
+}
+
+interface NavigatorWithBattery extends Navigator {
+  getBattery?: () => Promise<BatteryManager>;
+}
+
 const Status = () => {
   const [batteryStatus, setBatteryStatus] = React.useState<number | string>(0);
 
   React.useEffect(() => {
-    if ((navigator as any).getBattery) {
-      (navigator as any).getBattery().then((battery: any) => {
+    const nav = navigator as NavigatorWithBattery;
+    if (nav.getBattery) {
+      nav.getBattery().then((battery) => {
         // Set initial battery status
         setBatteryStatus(Math.round(battery.level * 100));
 

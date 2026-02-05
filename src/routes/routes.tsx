@@ -10,6 +10,7 @@ import PastVerbPage from "@/pages/PastVerb";
 import PronounsPage from "@/pages/Pronouns";
 import PresentVerbs from "@/pages/PresentVerbs";
 import Prular from "@/pages/Prular";
+import Babs from "@/pages/Babs";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ export const router = createBrowserRouter([
         element : <PresentVerbs />,
         handle: { title: "Present Verbs" },
 
+      },
+      {
+        path : "babs",
+        element : <Babs/>,
+        handle: { title: "Babs" },
       },
       {
         path: "past-verbs",

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
@@ -12,19 +12,19 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/layouts/nav-main"
-import { NavProjects } from "@/layouts/nav-projects"
-import { NavUser } from "@/layouts/nav-user"
-import { TeamSwitcher } from "@/layouts/team-switcher"
+import { NavMain } from "@/layouts/nav-main";
+import { NavProjects } from "@/layouts/nav-projects";
+import { NavUser } from "@/layouts/nav-user";
+import { TeamSwitcher } from "@/layouts/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 // This is sample data.
 const data = {
@@ -38,7 +38,7 @@ const data = {
       name: "Q10Q Inc.",
       logo: BookOpenText,
       plan: "Learning",
-      color : "#3e9392"
+      color: "#3e9392",
     },
     {
       name: "Acme Corp.",
@@ -66,13 +66,17 @@ const data = {
           title: "Past Verbs",
           url: "/past-verbs",
         },
-          {
+        {
           title: "Present Verbs",
           url: "/present-verbs",
         },
-          {
+        {
           title: "Prular",
           url: "/prular",
+        },
+        {
+          title: "Babs",
+          url: "/babs",
         },
         {
           title: "Settings",
@@ -163,7 +167,7 @@ const data = {
       icon: Map,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -180,5 +184,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

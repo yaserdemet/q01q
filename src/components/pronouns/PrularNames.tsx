@@ -37,8 +37,8 @@ interface FormSet {
   singular: string;
   dual: string;
   plural: string;
-  dualNasb: string;
-  pluralNasb: string;
+  dualNasb?: string;
+  pluralNasb?: string;
 }
 
 const NounTable = ({
@@ -54,7 +54,7 @@ const NounTable = ({
   genderIcon: string;
   bgColor: string;
   textColor: string;
-  forms: any;
+  forms: FormSet;
 }) => (
   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white">
     <div
@@ -153,52 +153,38 @@ const NounTable = ({
 const PrularNames = () => {
   const [selectedNoun, setSelectedNoun] = useState<NounData>(nouns[0]);
   const [roles, setRoles] = useState("");
-//   const formsData = {
-//     masculine: {
-//       singular: selectedNoun.base,
-//       dual: selectedNoun.base + "َانِ",
-//       plural: selectedNoun.base + "ُونَ",
-//       dualNasb: selectedNoun.base + "َيْنِ",
-//       pluralNasb: selectedNoun.base + "ِينَ",
-//     },
-//     feminine: {
-//       singular: selectedNoun.base + "َة",
-//       dual: selectedNoun.base + "َتَانِ",
-//       plural: selectedNoun.base + "َاتٌ",
-//       dualNasb: selectedNoun.base + "َتَيْنِ",
-//       pluralNasb: selectedNoun.base + "َاتٍ",
-//     },
-//   };
-const formsData = {
-  subject: { // FAIL (merfû‘ / damme)
-    masculine: {
-      singular: selectedNoun.base,
-      dual: selectedNoun.base + "َانِ",
-      plural: selectedNoun.base + "ُونَ",
+  const formsData = {
+    subject: {
+      // FAIL (merfû‘ / damme)
+      masculine: {
+        singular: selectedNoun.base,
+        dual: selectedNoun.base + "َانِ",
+        plural: selectedNoun.base + "ُونَ",
+      },
+      feminine: {
+        singular: selectedNoun.base + "َة",
+        dual: selectedNoun.base + "َتَانِ",
+        plural: selectedNoun.base + "َاتُ",
+      },
     },
-    feminine: {
-      singular: selectedNoun.base + "َة",
-      dual: selectedNoun.base + "َتَانِ",
-      plural: selectedNoun.base + "َاتُ",
-    },
-  },
 
-  object: { // MEF‘ÛL + CÂR–MECRÛR (mansûb / mecrûr)
-    masculine: {
-      singular: selectedNoun.base,
-      dual: selectedNoun.base + "َيْنِ",
-      plural: selectedNoun.base + "ِينَ",
+    object: {
+      // MEF‘ÛL + CÂR–MECRÛR (mansûb / mecrûr)
+      masculine: {
+        singular: selectedNoun.base,
+        dual: selectedNoun.base + "َيْنِ",
+        plural: selectedNoun.base + "ِينَ",
+      },
+      feminine: {
+        singular: selectedNoun.base + "َة",
+        dual: selectedNoun.base + "َتَيْنِ",
+        plural: selectedNoun.base + "َاتِ",
+      },
     },
-    feminine: {
-      singular: selectedNoun.base + "َة",
-      dual: selectedNoun.base + "َتَيْنِ",
-      plural: selectedNoun.base + "َاتِ",
-    },
-  },
-};
+  };
 
   return (
-    <div className="p-6 max-w-5xl mx-auto space-y-6 animate-in fade-in duration-500">
+    <div className="py-6 space-y-6 animate-in fade-in slide-in-from-left-12 duration-1000 ease-in-out">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl border border-slate-100 bg-slate-50/50">
         <div className="w-full md:w-80">
           <Select
@@ -257,7 +243,11 @@ const formsData = {
           genderIcon="♂"
           bgColor="bg-blue-100"
           textColor="text-blue-700"
-          forms={roles === "fail" ? formsData.subject.masculine : formsData.object.masculine}
+          forms={
+            roles === "fail"
+              ? formsData.subject.masculine
+              : formsData.object.masculine
+          }
         />
         <NounTable
           title="Dişi (Müennes)"
@@ -265,7 +255,11 @@ const formsData = {
           genderIcon="♀"
           bgColor="bg-rose-100"
           textColor="text-rose-700"
-          forms={roles === "fail" ? formsData.subject.feminine : formsData.object.feminine}
+          forms={
+            roles === "fail"
+              ? formsData.subject.feminine
+              : formsData.object.feminine
+          }
         />
       </div>
 
