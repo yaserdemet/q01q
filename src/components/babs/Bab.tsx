@@ -1,5 +1,3 @@
-import React from "react";
-
 interface BabResult {
   mazi: string;
   muzari: string;
