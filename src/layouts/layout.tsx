@@ -35,12 +35,8 @@ export default function Layout({
   const matches = useMatches();
 
   // Get pageTitle from the last route handle if not provided as a prop
-<<<<<<< HEAD
   const routePageTitle = (matches[matches.length - 1]?.handle as RouteHandle)
     ?.title;
-=======
-  const routePageTitle = (matches[matches.length - 1]?.handle as { title?: string })?.title;
->>>>>>> f483bff1d44a6cdf18f3f27eafb0b3c205ade355
   const pageTitle = propPageTitle || routePageTitle || "Page";
 
   return (
