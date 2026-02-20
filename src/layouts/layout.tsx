@@ -16,6 +16,8 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import Footer from "@/layouts/footer";
+import useCheckConnection from "@/hooks/useCheckConnection";
+import Offline from "@/pages/Offline";
 
 interface LayoutProps {
   children?: ReactNode;
@@ -38,7 +40,7 @@ export default function Layout({
   const routePageTitle = (matches[matches.length - 1]?.handle as RouteHandle)
     ?.title;
   const pageTitle = propPageTitle || routePageTitle || "Page";
-
+  const {isOnline} = useCheckConnection();
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -83,7 +85,10 @@ export default function Layout({
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          {children || <Outlet />}
+          {
+            isOnline ? <Outlet /> : <Offline />
+          }
+          {/* {children || <Outlet />} */}
         </div>
         <Footer />
       </SidebarInset>

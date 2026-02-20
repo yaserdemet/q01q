@@ -60,7 +60,7 @@ const data = {
       items: [
         {
           title: "Pronouns",
-          url: "pronouns",
+          url: "/pronouns",
         },
         {
           title: "Past Verbs",
