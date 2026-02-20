@@ -7,14 +7,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { verbs, tableRows } from "./data";
+import { tableRows, verbs } from "./data";
+import DynamicVerbs from "@/lib/DynamicVerbs";
 
 interface VerbExplorerProps {
   tense: "past" | "present";
@@ -22,9 +16,6 @@ interface VerbExplorerProps {
 }
 
 const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
-  const [selectedVerbIndex, setSelectedVerbIndex] = useState(0);
-  const selectedVerb = verbs[selectedVerbIndex];
-
   const getRowClassName = (type: string) => {
     switch (type) {
       case "male":
@@ -102,53 +93,20 @@ const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
     }
   };
 
+  const [selectedVerbIndex, setSelectedVerbIndex] = useState(0);
+  const selectedVerb = verbs[selectedVerbIndex];
+
   const displayVerb = renderVerb || defaultRender;
 
   return (
-    <div className="mt-8 max-w-6xl">
+    <div className="mt-8 max-w-6xl animate-in fade-in slide-in-from-left-12 duration-1000 ease-in-out">
       <div className="mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
-          <div className="max-w-xs">
-            <label className="text-sm font-semibold mb-2 block text-slate-700">
-              Choose a verb:
-            </label>
-            <Select
-              value={selectedVerbIndex.toString()}
-              onValueChange={(value) => setSelectedVerbIndex(parseInt(value))}
-            >
-              <SelectTrigger className="w-full bg-white shadow-sm border-slate-200">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {verbs.map((verb, idx) => (
-                  <SelectItem key={idx} value={idx.toString()}>
-                    {verb.infinitive} - {verb.meaning}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="p-4 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl border border-indigo-100 shadow-sm flex items-center gap-6">
-            <div>
-              <p className="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1">
-                Infinitive
-              </p>
-              <p className="text-2xl font-bold font-arabic">
-                {selectedVerb.infinitive}
-              </p>
-            </div>
-            <div className="h-10 w-px bg-indigo-200" />
-            <div>
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">
-                Meaning
-              </p>
-              <p className="text-xl font-medium text-slate-700">
-                {selectedVerb.meaning}
-              </p>
-            </div>
-          </div>
-        </div>
+        <DynamicVerbs
+          tense={tense}
+          renderVerb={displayVerb}
+          selectedVerbIndex={selectedVerbIndex}
+          onVerbChange={setSelectedVerbIndex}
+        />
       </div>
 
       <div className="rounded-xl border bg-card text-card-foreground shadow-lg overflow-hidden">
@@ -157,15 +115,15 @@ const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
             <TableRow className="bg-slate-50/80 border-b">
               <TableHead className="font-bold text-slate-500 w-[150px]">
                 Category
-              </TableHead>
-              <TableHead className="font-bold text-center text-slate-900">
-                Singular
-              </TableHead>
-              <TableHead className="font-bold text-center text-slate-900">
-                Dual
-              </TableHead>
+              </TableHead>           
               <TableHead className="font-bold text-center text-slate-900">
                 Plural
+              </TableHead>
+                <TableHead className="font-bold text-center text-slate-900">
+                Dual
+              </TableHead>
+               <TableHead className="font-bold text-center text-slate-900">
+                Singular
               </TableHead>
             </TableRow>
           </TableHeader>

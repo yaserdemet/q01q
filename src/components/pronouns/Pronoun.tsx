@@ -18,7 +18,7 @@ import { useState } from "react";
 const Pronoun = () => {
   const [showSuffix, setShowSuffix] = useState<boolean>(true);
   return (
-    <>
+    <div className="animate-in fade-in slide-in-from-left-12 duration-1000 ease-in-out">
       <Alert className="max-w-5xl my-12 border-green-200 bg-green-100 text-blue-600 dark:border-green-900 dark:bg-green-950 dark:text-blue-50">
         <Info />
 
@@ -111,7 +111,7 @@ const Pronoun = () => {
           </TableBody>
         </Table>
       </div>
-    </>
+    </div>
   );
 };
 

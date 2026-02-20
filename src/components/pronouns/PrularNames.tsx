@@ -226,10 +226,11 @@ const PrularNames = () => {
           onValueChange={(val) => setRoles(val)}
           defaultValue="fail"
           className="w-100"
+          
         >
           <TabsList>
-            <TabsTrigger value="fail">Fail</TabsTrigger>
-            <TabsTrigger value="meful">Meful</TabsTrigger>
+            <TabsTrigger className="hover:cursor-pointer" value="fail">Fail</TabsTrigger>
+            <TabsTrigger className="hover:cursor-pointer" value="meful">Meful</TabsTrigger>
           </TabsList>
           <TabsContent value="fail">Fail Roles</TabsContent>
           <TabsContent value="meful">Meful Roles</TabsContent>
