@@ -1,8 +1,5 @@
-"use client";
-
 import * as React from "react";
 import GenericChart, { type GraphicType } from "./GenericChart";
-
 import {
   Select,
   SelectContent,
@@ -10,60 +7,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { type ChartConfig } from "@/components/ui/chart";
+import { chartConfig, chartData, quranDerivedNounData, verbType } from "./data";
 
-export const description = "Verb frequency in the Qur'an";
-
-const chartData = [
-  { tense: "Mazi (Geçmiş)", count: 12700, fill: "var(--color-mazi)" },
-  {
-    tense: "Müzari (Şimdiki/Geniş)",
-    count: 10400,
-    fill: "var(--color-muzari)",
-  },
-  { tense: "Gelecek", count: 1700, fill: "var(--color-future)" },
-  { tense: "Emir", count: 1300, fill: "var(--color-emir)" },
-];
-const verbType = [
-  { tense: "Misal", count: 2150, fill: "var(--color-mazi)" },
-  {
-    tense: "Ecvef",
-    count: 2800,
-    fill: "var(--color-muzari)",
-  },
-  { tense: "Nakıs", count: 3400, fill: "var(--color-future)" },
-];
-
-export const quranDerivedNounData = [
-  { tense: "İsm-i Fâil", count: 3100, fill: "var(--color-mazi)" },
-  { tense: "İsm-i Mef‘ûl", count: 1250, fill: "var(--color-muzari)" },
-  { tense: "Mastar", count: 2400, fill: "var(--color-future)" },
-];
-
+// ---------------------------------------------------
 const datasets = {
   tenses: chartData,
   types: verbType,
   nouns: quranDerivedNounData,
 };
-
-const chartConfig = {
-  mazi: {
-    label: "Māḍī (Past)",
-    color: "#4facfe",
-  },
-  muzari: {
-    label: "Muḍāriʿ (Present)",
-    color: "#00f2fe",
-  },
-  future: {
-    label: "Future",
-    color: "#ffd166",
-  },
-  emir: {
-    label: "Emir",
-    color: "#ff6b81",
-  },
-} satisfies ChartConfig;
 
 export default function PastGraphics() {
   const [dataKey, setDataKey] = React.useState<keyof typeof datasets>("tenses");
@@ -104,6 +55,9 @@ export default function PastGraphics() {
 
               <SelectItem value="area" className="rounded-lg">
                 Area Chart
+              </SelectItem>
+              <SelectItem value="line" className="rounded-lg">
+                Line Chart
               </SelectItem>
             </SelectContent>
           </Select>
