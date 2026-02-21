@@ -82,6 +82,10 @@ const data = {
           title: "Settings",
           url: "/settings",
         },
+        {
+          title: "Graphics",
+          url: "/graphics",
+        },
       ],
     },
     {

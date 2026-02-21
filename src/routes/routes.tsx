@@ -11,6 +11,7 @@ import PronounsPage from "@/pages/Pronouns";
 import PresentVerbs from "@/pages/PresentVerbs";
 import Prular from "@/pages/Prular";
 import Babs from "@/pages/Babs";
+import Graphics from "@/pages/Graphics";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,11 @@ export const router = createBrowserRouter([
         path: "prular",
         element: <Prular />,
         handle: { title: "Prular" },
+      },
+      {
+        path: "graphics",
+        element: <Graphics/>,
+        handle: { title: "Graphics" },
       },
     ],
   },
