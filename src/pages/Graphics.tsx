@@ -9,10 +9,9 @@ const Graphics = () => {
   return (
     <>
       <MetaData title="Past Verbs - q01q" description="Past Verbs" />
-
       <Header
         header="Graphics"
-        explanation="Select a verb to see its conjugations for different genders and numbers in the past tense."
+        explanation="This graphics shows Quranic words distribution in Quran"
         Icon={ChartSpline}
       >
         <PastGraphics />

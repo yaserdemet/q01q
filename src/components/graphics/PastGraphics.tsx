@@ -7,7 +7,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { chartConfig, chartData, quranDerivedNounData, verbType } from "./data";
+import { changeHeader, chartConfig, chartData, quranDerivedNounData, verbType } from "./data";
+import LoadingComponent from "../ui/LoadingComponent";
 
 // ---------------------------------------------------
 const datasets = {
@@ -19,18 +20,21 @@ const datasets = {
 export default function PastGraphics() {
   const [dataKey, setDataKey] = React.useState<keyof typeof datasets>("tenses");
   const [typeGraphics, setTypeGraphics] = React.useState<GraphicType>("bar");
-
+  const [loading, setLoading] = React.useState(true);
   const dataToShow = datasets[dataKey];
 
   return (
     <div className="mt-8">
+      <LoadingComponent
+      loading={loading} 
+      setLoading={setLoading} />
       <GenericChart
         type={typeGraphics}
         data={dataToShow}
         config={chartConfig}
         xDataKey="tense"
         categories={["count"]}
-        title="Qur'anic Verb Frequency"
+        title={changeHeader(dataKey)}
         description="Explore different categories of Qur'anic words"
         className="pt-0"
       >

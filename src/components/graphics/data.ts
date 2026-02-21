@@ -55,3 +55,14 @@ export const chartConfig : Record<string, IConfig> = {
     color: "#ff6b81",
   },
 } satisfies ChartConfig;
+
+export const changeHeader = (dataKey : string) => {
+    switch(dataKey){
+    case "tenses":
+      return "This graphics shows tense distribution in Quran";
+    case "types":
+      return "This graphics shows verb type distribution in Quran";
+    case "nouns":
+      return "This graphics shows noun derived from verb distribution in Quran";
+  }
+} 
