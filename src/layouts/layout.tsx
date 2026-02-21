@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { Outlet, useMatches } from "react-router-dom";
 import { AppSidebar } from "@/layouts/app-sidebar";
 import {
@@ -20,7 +19,6 @@ import useCheckConnection from "@/hooks/useCheckConnection";
 import Offline from "@/pages/Offline";
 
 interface LayoutProps {
-  children?: ReactNode;
   pageTitle?: string;
   breadcrumbItems?: Array<{ label: string; href?: string }>;
 }
@@ -30,7 +28,6 @@ interface RouteHandle {
 }
 
 export default function Layout({
-  children,
   pageTitle: propPageTitle,
   breadcrumbItems = [],
 }: LayoutProps) {
@@ -88,7 +85,6 @@ export default function Layout({
           {
             isOnline ? <Outlet /> : <Offline />
           }
-          {/* {children || <Outlet />} */}
         </div>
         <Footer />
       </SidebarInset>
