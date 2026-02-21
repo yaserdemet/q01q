@@ -72,7 +72,7 @@ export default function GenericChart({
 }: GenericChartProps) {
   // Determine which chart component to use based on the type prop
   const renderChart = () => {
-    const commonMargin = { left: 12, right: 12 };
+    const commonMargin = { left: 40, right: 40, top: 10 };
 
     switch (type) {
       case "pie":
@@ -101,6 +101,8 @@ export default function GenericChart({
               tickMargin={10}
               axisLine={false}
               className="text-xl font-arabic"
+              interval={0}
+              padding={{ left: 20, right: 20 }}
             />
             <YAxis
               tickLine={false}
@@ -111,17 +113,63 @@ export default function GenericChart({
             />
             <ChartTooltip content={<ChartTooltipContent />} />
             <ChartLegend content={<ChartLegendContent />} />
-            {categories.map((key) => (
-              <Area
-                key={key}
-                dataKey={key}
-                type="monotone"
-                fill={`var(--color-${key})`}
-                fillOpacity={0.4}
-                stroke={`var(--color-${key})`}
-              />
-            ))}
+            {categories.map((key) => {
+              const colorVar = config[key]
+                ? `var(--color-${key})`
+                : `var(--color-${Object.keys(config)[0]})`;
+              return (
+                <Area
+                  key={key}
+                  dataKey={key}
+                  type="monotone"
+                  fill={colorVar}
+                  fillOpacity={0.4}
+                  stroke={colorVar}
+                  strokeWidth={2}
+                />
+              );
+            })}
           </AreaChart>
+        );
+      case "line":
+        return (
+          <LineChart accessibilityLayer data={data} margin={commonMargin}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey={xDataKey}
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              className="text-xl font-arabic"
+              interval={0}
+              padding={{ left: 20, right: 20 }}
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickCount={3}
+              hide
+            />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            <ChartLegend content={<ChartLegendContent />} />
+            {categories.map((key) => {
+              const colorVar = config[key]
+                ? `var(--color-${key})`
+                : `var(--color-${Object.keys(config)[0]})`;
+              return (
+                <Line
+                  key={key}
+                  dataKey={key}
+                  type="monotone"
+                  stroke={colorVar}
+                  strokeWidth={2}
+                  dot={{ fill: colorVar }}
+                  activeDot={{ r: 6 }}
+                />
+              );
+            })}
+          </LineChart>
         );
       case "bar":
       default:
@@ -154,7 +202,12 @@ export default function GenericChart({
                 {data.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
-                    fill={entry.fill || `var(--color-${key})`}
+                    fill={
+                      entry.fill ||
+                      (config[key]
+                        ? `var(--color-${key})`
+                        : `var(--color-${Object.keys(config)[0]})`)
+                    }
                   />
                 ))}
               </Bar>
