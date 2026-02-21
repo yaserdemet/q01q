@@ -53,7 +53,7 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Noun and Pronoun",
       url: "/playground",
       icon: SquareTerminal,
       isActive: true,
@@ -62,14 +62,7 @@ const data = {
           title: "Pronouns",
           url: "/pronouns",
         },
-        {
-          title: "Past Verbs",
-          url: "/past-verbs",
-        },
-        {
-          title: "Present Verbs",
-          url: "/present-verbs",
-        },
+     
         {
           title: "Prular",
           url: "/prular",
@@ -78,55 +71,35 @@ const data = {
           title: "Babs",
           url: "/babs",
         },
-        {
-          title: "Settings",
-          url: "/settings",
-        },
-        {
-          title: "Graphics",
-          url: "/graphics",
-        },
       ],
     },
     {
-      title: "Models",
+      title: "Verbs",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Past Verbs",
+          url: "/verbs/past-verbs",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: "Present Verbs",
+          url: "/verbs/present-verbs",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Interactive",
       url: "#",
       icon: BookOpen,
       items: [
-        {
-          title: "Introduction",
-          url: "#",
+      {
+          title: "Graphics",
+          url: "/interactive/graphics",
         },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+         {
+          title: "Map",
+          url: "/interactive/map",
         },
       ],
     },
@@ -135,21 +108,9 @@ const data = {
       url: "#",
       icon: Settings2,
       items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
+       {
+          title: "Settings",
+          url: "/settings",
         },
       ],
     },

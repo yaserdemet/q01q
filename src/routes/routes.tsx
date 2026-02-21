@@ -12,6 +12,7 @@ import PresentVerbs from "@/pages/PresentVerbs";
 import Prular from "@/pages/Prular";
 import Babs from "@/pages/Babs";
 import Graphics from "@/pages/Graphics";
+import MapPage from "@/pages/Map";
 
 export const router = createBrowserRouter([
   {
@@ -36,35 +37,51 @@ export const router = createBrowserRouter([
         handle: { title: "Pronouns" },
       },
       {
-        path : "present-verbs",
-        element : <PresentVerbs />,
-        handle: { title: "Present Verbs" },
-
+        path: "verbs",
+        children: [
+          {
+            index: true,
+            path: "present-verbs",
+            element: <PresentVerbs />,
+            handle: { title: "Present Verbs" },
+          },
+          {
+            path: "past-verbs",
+            element: <PastVerbPage />,
+            handle: { title: "Past Verbs" },
+          },
+        ],
       },
       {
-        path : "babs",
-        element : <Babs/>,
+        path: "babs",
+        element: <Babs />,
         handle: { title: "Babs" },
       },
-      {
-        path: "past-verbs",
-        element: <PastVerbPage />,
-        handle: { title: "Past Verbs" },
-      },
+
       {
         path: "settings",
         element: <SettingsPage />,
         handle: { title: "Settings" },
       },
-       {
+      {
         path: "prular",
         element: <Prular />,
         handle: { title: "Prular" },
       },
       {
-        path: "graphics",
-        element: <Graphics/>,
-        handle: { title: "Graphics" },
+        path: "/interactive",
+        children: [
+          {
+            path: "graphics",
+            element: <Graphics />,
+            handle: { title: "Graphics" },
+          },
+          {
+            path: "map",
+            element: <MapPage />,
+            handle: { title: "Map" },
+          },
+        ],
       },
     ],
   },

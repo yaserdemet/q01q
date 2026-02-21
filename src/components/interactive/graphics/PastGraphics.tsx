@@ -7,8 +7,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { changeHeader, chartConfig, chartData, quranDerivedNounData, verbType } from "./data";
-import LoadingComponent from "../ui/LoadingComponent";
+import {
+  changeHeader,
+  chartConfig,
+  chartData,
+  quranDerivedNounData,
+  verbType,
+} from "./data";
+import LoadingComponent from "../../ui/LoadingComponent";
 
 // ---------------------------------------------------
 const datasets = {
@@ -25,9 +31,7 @@ export default function PastGraphics() {
 
   return (
     <div className="mt-8">
-      <LoadingComponent
-      loading={loading} 
-      setLoading={setLoading} />
+      <LoadingComponent loading={loading} setLoading={setLoading} />
       <GenericChart
         type={typeGraphics}
         data={dataToShow}

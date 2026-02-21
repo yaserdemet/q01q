@@ -1,4 +1,4 @@
-import PastGraphics from "@/components/graphics/PastGraphics";
+import PastGraphics from "@/components/interactive/graphics/PastGraphics";
 import Header from "@/components/ui/Header";
 import MetaData from "@/lib/MetaData";
 import { ChartSpline } from "lucide-react";
