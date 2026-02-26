@@ -4,12 +4,13 @@ interface HeaderProps {
   explanation: string;
   Icon: React.ComponentType;
   children?: React.ReactNode;
+  color?: string;
 }
-const Header = ({ header, explanation, Icon, children }: HeaderProps) => {
+const Header = ({ header, color, explanation, Icon, children }: HeaderProps) => {
   return (
     <div className="p-8">
       <div className="flex  items-center gap-2">
-        <Icon />
+        <Icon className={color} />
         <h1 className="text-3xl font-bold">{header}</h1>
       </div>
 

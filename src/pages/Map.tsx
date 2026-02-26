@@ -1,17 +1,18 @@
 import Header from "@/components/ui/Header";
 import MetaData from "@/lib/MetaData";
-import { Map } from "lucide-react";
+import { MapPinIcon } from "lucide-react";
 import { Globe } from "@/components/interactive/map/Globe";
 
 const MapPage = () => {
   return (
     <>
-      <MetaData title="Past Verbs - q01q" description="Past Verbs" />
+      <MetaData title="Maps of Qur'an - q01q" description="Maps of Qur'an" />
       <Header
         header="Map of Qur'an"
         explanation="This map shows the places where the Qur'an was revealed."
-        Icon={Map}
-      >
+        Icon={MapPinIcon}
+        color="text-green-500"
+      >   
         <Globe />
       </Header>
     </>

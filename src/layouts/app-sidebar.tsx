@@ -78,6 +78,10 @@ const data = {
       url: "#",
       icon: Bot,
       items: [
+         {
+          title: "Types",
+          url: "/verbs/types",
+        },
         {
           title: "Past Verbs",
           url: "/verbs/past-verbs",

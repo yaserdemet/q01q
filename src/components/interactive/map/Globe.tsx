@@ -21,7 +21,7 @@ export function Globe() {
 
 
   return (
-    <div className="relative rounded-xl ">
+    <div className="relative rounded-xl mt-8">
       <Map
         center={QURAN_EVENTS[0].events[0].coordinates}
         zoom={3}

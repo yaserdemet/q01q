@@ -6,13 +6,14 @@ import SettingsPage from "@/pages/Settings";
 import { getLocationFromIP } from "@/apis/getPrayTime";
 
 import ErrorPage from "@/pages/ErrorPage";
-import PastVerbPage from "@/pages/PastVerb";
+import PastVerbPage from "@/pages/verbs/PastVerb";
 import PronounsPage from "@/pages/Pronouns";
-import PresentVerbs from "@/pages/PresentVerbs";
+import PresentVerbs from "@/pages/verbs/PresentVerbs";
 import Prular from "@/pages/Prular";
 import Babs from "@/pages/Babs";
 import Graphics from "@/pages/Graphics";
 import MapPage from "@/pages/Map";
+import VerbTypes from "@/pages/verbs/VerbTypes";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,11 @@ export const router = createBrowserRouter([
             path: "past-verbs",
             element: <PastVerbPage />,
             handle: { title: "Past Verbs" },
+          },
+          {
+            path: "types",
+            element: <VerbTypes />,
+            handle: { title: "Types" },
           },
         ],
       },
