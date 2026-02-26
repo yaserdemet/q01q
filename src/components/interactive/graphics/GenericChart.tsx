@@ -39,6 +39,7 @@ interface GenericChartProps {
   /** The type of graphic to display. Defaults to "bar". */
   type?: GraphicType;
   /** The data to be displayed in the chart. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any[];
   /** The configuration for the chart colors and labels. */
   config: ChartConfig;
@@ -203,7 +204,7 @@ export default function GenericChart({
                   <Cell
                     key={`cell-${index}`}
                     fill={
-                      entry.fill ||
+                      (entry as { fill?: string }).fill ||
                       (config[key]
                         ? `var(--color-${key})`
                         : `var(--color-${Object.keys(config)[0]})`)

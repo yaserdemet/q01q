@@ -102,7 +102,7 @@ function MapSearchControlWrapper() {
       <MapSearchControl
         onPlaceSelect={(feature) =>
           setSelectedPosition(
-            feature.geometry.coordinates.toReversed() as LatLngExpression,
+            [...feature.geometry.coordinates].reverse() as LatLngExpression,
           )
         }
       />

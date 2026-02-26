@@ -96,6 +96,7 @@ import {
 } from "react-leaflet"
 import type { MarkerClusterGroupProps } from "react-leaflet-markercluster"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function createLazyComponent<T extends ComponentType<any>>(
     factory: () => Promise<{ default: T }>
 ) {
@@ -397,7 +398,7 @@ function MapLayers({
                 tileLayers.some((layer) => layer.name === defaultTileLayer)
                     ? defaultTileLayer
                     : tileLayers[0].name
-            setSelectedTileLayer(validDefaultValue)
+            setTimeout(() => setSelectedTileLayer(validDefaultValue), 0)
         }
 
         // Error: Invalid defaultActiveLayerGroups
@@ -980,30 +981,30 @@ function MapDrawControl({
 }) {
     const { L, LeafletDraw } = useLeaflet()
     const map = useMap()
-    const featureGroupRef = useRef<L.FeatureGroup | null>(null)
+    const [featureGroup, setFeatureGroup] = useState<L.FeatureGroup | null>(null)
     const editControlRef = useRef<EditToolbar.Edit | null>(null)
     const deleteControlRef = useRef<EditToolbar.Delete | null>(null)
     const [activeMode, setActiveMode] = useState<MapDrawMode>(null)
     const [layersCount, setLayersCount] = useState(0)
 
     function updateLayersCount() {
-        if (featureGroupRef.current) {
-            setLayersCount(featureGroupRef.current.getLayers().length)
+        if (featureGroup) {
+            setLayersCount(featureGroup.getLayers().length)
         }
     }
 
     function handleDrawCreated(event: DrawEvents.Created) {
-        if (!featureGroupRef.current) return
+        if (!featureGroup) return
         const { layer } = event
-        featureGroupRef.current.addLayer(layer)
-        onLayersChange?.(featureGroupRef.current)
+        featureGroup.addLayer(layer)
+        onLayersChange?.(featureGroup)
         updateLayersCount()
         setActiveMode(null)
     }
 
     function handleDrawEditedOrDeleted() {
-        if (!featureGroupRef.current) return
-        onLayersChange?.(featureGroupRef.current)
+        if (!featureGroup) return
+        onLayersChange?.(featureGroup)
         updateLayersCount()
         setActiveMode(null)
     }
@@ -1031,14 +1032,14 @@ function MapDrawControl({
     return (
         <MapDrawContext.Provider
             value={{
-                featureGroup: featureGroupRef.current,
+                featureGroup: featureGroup,
                 activeMode,
                 setActiveMode,
                 editControlRef,
                 deleteControlRef,
                 layersCount,
             }}>
-            <LeafletFeatureGroup ref={featureGroupRef} />
+            <LeafletFeatureGroup ref={setFeatureGroup} />
             <MapControlContainer className={cn(position, className)}>
                 <ButtonGroup orientation="vertical" {...props} />
             </MapControlContainer>
@@ -1329,10 +1330,13 @@ function MapDrawEdit({
             touchMoveIcon: mapDrawHandleIcon,
             touchResizeIcon: mapDrawHandleIcon,
         })
+
+        // eslint-disable-next-line react-hooks/immutability
         L.drawLocal.edit.handlers.edit.tooltip = {
             text: "Drag handles or markers to edit.",
             subtext: "",
         }
+
         L.drawLocal.edit.handlers.remove.tooltip = {
             text: "Click on a shape to remove.",
         }
@@ -1495,7 +1499,9 @@ function useDebounceLoadingState(delay = 200) {
                 clearTimeout(timeoutRef.current)
                 timeoutRef.current = null
             }
-            setShowLoading(false)
+            if (showLoading) {
+                setTimeout(() => setShowLoading(false), 0)
+            }
         }
 
         return () => {
@@ -1538,5 +1544,4 @@ export {
     MapTileLayer,
     MapTooltip,
     MapZoomControl,
-    useLeaflet,
 }
