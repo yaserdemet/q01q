@@ -12,6 +12,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  CombineIcon,
 } from "lucide-react";
 
 import { NavMain } from "@/layouts/nav-main";
@@ -116,6 +117,18 @@ const data = {
           title: "Settings",
           url: "/settings",
         },
+      ],
+    },
+      {
+      title: "Social",
+      url: "#",
+      icon: CombineIcon,
+      items: [
+      {
+          title: "Contact",
+          url: "/social/contact",
+        },
+       
       ],
     },
   ],

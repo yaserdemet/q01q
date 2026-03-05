@@ -11,9 +11,10 @@ import PronounsPage from "@/pages/Pronouns";
 import PresentVerbs from "@/pages/verbs/PresentVerbs";
 import Prular from "@/pages/Prular";
 import Babs from "@/pages/Babs";
-import Graphics from "@/pages/Graphics";
-import MapPage from "@/pages/Map";
+import Graphics from "@/pages/interactive/Graphics";
+import MapPage from "@/pages/interactive/Map";
 import VerbTypes from "@/pages/verbs/VerbTypes";
+import Contact from "@/pages/contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,11 @@ export const router = createBrowserRouter([
         element: <Babs />,
         handle: { title: "Babs" },
       },
+        {
+        path: "contact",
+        element: <Contact />,
+        handle: { title: "Contact" },
+      },
 
       {
         path: "settings",
@@ -86,6 +92,16 @@ export const router = createBrowserRouter([
             path: "map",
             element: <MapPage />,
             handle: { title: "Map" },
+          },
+        ],
+      },
+        {
+        path: "social",
+        children: [
+          {
+            path: "contact",
+            element: <Contact />,
+            handle: { title: "Contact" },
           },
         ],
       },
