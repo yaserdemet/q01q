@@ -1,5 +1,9 @@
 # Learning App
 
+![Animation (0)](https://github.com/user-attachments/assets/54577ea5-513b-4039-bc03-59dea0b84dcb)
+
+
+
 A modern React 19 application built with Vite, Tailwind CSS 4, and shadcn/ui. This project serves as a template or a base for building feature-rich web applications with a focus on developer experience and performance.
 
 ## 🚀 Features
