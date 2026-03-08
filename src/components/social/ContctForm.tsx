@@ -14,7 +14,6 @@ import emailjs from "@emailjs/browser";
 import { useActionState } from "react";
 import { toast } from "sonner";
 import { Toaster } from '../ui/sonner';
-
 const ContactForm = () => {
       //   const [info, setInfo] = useState({
   //     person: {
