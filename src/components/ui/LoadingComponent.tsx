@@ -9,6 +9,7 @@ interface ILoading {
 }
 const LoadingComponent = ({ loading, setLoading, time = 1200 }: ILoading) => {
   React.useEffect(() => {
+    setLoading(true)
     const timer = setTimeout(() => setLoading(false), time);
     return () => clearTimeout(timer);
   }, []);

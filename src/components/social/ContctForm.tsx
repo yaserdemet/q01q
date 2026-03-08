@@ -13,6 +13,7 @@ import {
 import emailjs from "@emailjs/browser";
 import { useActionState } from "react";
 import { toast } from "sonner";
+import { Toaster } from '../ui/sonner';
 const ContactForm = () => {
       //   const [info, setInfo] = useState({
   //     person: {
@@ -81,6 +82,7 @@ const ContactForm = () => {
   const [state, formAction, pending] = useActionState(handleSubmit, null);
   return (
     <div className='flex justify-center mt-8'>
+      <Toaster position='top-right' duration={5000} />
       <Card className="w-full max-w-xl">
           <CardHeader>
             <CardTitle>Your Message</CardTitle>

@@ -15,6 +15,7 @@ import Graphics from "@/pages/interactive/Graphics";
 import MapPage from "@/pages/interactive/Map";
 import VerbTypes from "@/pages/verbs/VerbTypes";
 import Contact from "@/pages/contact/Contact";
+import SocialComments from "@/pages/contact/SocialComments";
 
 export const router = createBrowserRouter([
   {
@@ -102,6 +103,11 @@ export const router = createBrowserRouter([
             path: "contact",
             element: <Contact />,
             handle: { title: "Contact" },
+          },
+            {
+            path: "comments",
+            element: <SocialComments />,
+            handle: { title: "Comments" },
           },
         ],
       },

@@ -63,7 +63,7 @@ const data = {
           title: "Pronouns",
           url: "/pronouns",
         },
-     
+
         {
           title: "Prular",
           url: "/prular",
@@ -79,7 +79,7 @@ const data = {
       url: "#",
       icon: Bot,
       items: [
-         {
+        {
           title: "Types",
           url: "/verbs/types",
         },
@@ -98,11 +98,11 @@ const data = {
       url: "#",
       icon: BookOpen,
       items: [
-      {
+        {
           title: "Graphics",
           url: "/interactive/graphics",
         },
-         {
+        {
           title: "Map",
           url: "/interactive/map",
         },
@@ -113,22 +113,25 @@ const data = {
       url: "#",
       icon: Settings2,
       items: [
-       {
+        {
           title: "Settings",
           url: "/settings",
         },
       ],
     },
-      {
+    {
       title: "Social",
       url: "#",
       icon: CombineIcon,
       items: [
-      {
+        {
           title: "Contact",
           url: "/social/contact",
         },
-       
+        {
+          title: "Comments",
+          url: "/social/comments",
+        },
       ],
     },
   ],
