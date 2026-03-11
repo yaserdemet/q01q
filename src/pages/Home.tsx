@@ -5,7 +5,7 @@ import { Home } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import * as Sentry from '@sentry/react';
+
 export default function Page() {
   useEffect(() => {
     const hasSeenWelcome = sessionStorage.getItem("hasSeenWelcome");

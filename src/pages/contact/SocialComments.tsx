@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "@/components/ui/Header";
 import MetaData from "@/lib/MetaData";
 import { MessageCircle } from "lucide-react";

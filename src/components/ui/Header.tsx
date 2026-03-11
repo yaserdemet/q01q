@@ -2,7 +2,7 @@ import React from "react";
 interface HeaderProps {
   header: string;
   explanation: string;
-  Icon: React.ComponentType;
+  Icon: React.ComponentType<{ className?: string }>;
   children?: React.ReactNode;
   color?: string;
 }
