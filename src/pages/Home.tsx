@@ -5,7 +5,7 @@ import { Home } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import { useEffect } from "react";
 import { toast } from "sonner";
-
+import * as Sentry from '@sentry/react';
 export default function Page() {
   useEffect(() => {
     const hasSeenWelcome = sessionStorage.getItem("hasSeenWelcome");
@@ -31,6 +31,13 @@ export default function Page() {
           started. "
         Icon={Home}
       ></Header>
+       <button
+      onClick={() => {
+        throw new Error('This is your first error mozz!');
+      }}
+    >
+      Break the world
+    </button>
     </>
   );
 }
