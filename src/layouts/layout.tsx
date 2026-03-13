@@ -1,4 +1,4 @@
-import { Outlet, useMatches } from "react-router-dom";
+import { Outlet, useMatches, ScrollRestoration } from "react-router-dom";
 import { AppSidebar } from "@/layouts/app-sidebar";
 import {
   Breadcrumb,
@@ -88,6 +88,7 @@ export default function Layout({
         </div>
         <Footer />
       </SidebarInset>
+      <ScrollRestoration getKey={(location) => location.pathname} />
     </SidebarProvider>
   );
 }
