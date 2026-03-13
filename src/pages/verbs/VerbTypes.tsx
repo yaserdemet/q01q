@@ -1,7 +1,6 @@
 import VerbType from '@/components/verbs/type/VerbType'
 import MetaData from '@/lib/MetaData'
 import { MapPinCheckIcon } from 'lucide-react'
-import React from 'react'
 import Header from '@/components/ui/Header'
 
 const VerbTypes = () => {

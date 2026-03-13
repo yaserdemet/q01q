@@ -1,4 +1,3 @@
-import React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -15,6 +14,14 @@ import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { Toaster } from "../ui/sonner";
 import * as Sentry from "@sentry/react";
+
+interface ContactFormData extends Record<string, unknown> {
+  name: string;
+  surname: string;
+  title: string;
+  email: string;
+  description: string;
+}
 
 const ContactForm = () => {
   //   const [info, setInfo] = useState({
@@ -86,9 +93,9 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     formState: { isSubmitting, errors },
-  } = useForm();
+  } = useForm<ContactFormData>();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: ContactFormData) => {
     try {
       const datas = await emailjs.send(
         import.meta.env.VITE_EMAIL_SERVICE_ID as string,

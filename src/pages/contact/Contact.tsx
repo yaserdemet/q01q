@@ -1,4 +1,3 @@
-import Comments from "@/components/social/Comments";
 import ContactForm from "@/components/social/ContctForm";
 import Header from "@/components/ui/Header";
 import MetaData from "@/lib/MetaData";
