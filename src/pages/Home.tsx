@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import * as Sentry from '@sentry/react';
+import Roles from "./essential/Roles";
 export default function Page() {
   useEffect(() => {
     const hasSeenWelcome = sessionStorage.getItem("hasSeenWelcome");
@@ -31,13 +32,7 @@ export default function Page() {
           started. "
         Icon={Home}
       ></Header>
-       <button
-      onClick={() => {
-        throw new Error('This is your first error mozz!');
-      }}
-    >
-      Break the world
-    </button>
+  <Roles />
     </>
   );
 }

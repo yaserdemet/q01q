@@ -7,15 +7,16 @@ import { getLocationFromIP } from "@/apis/getPrayTime";
 
 import ErrorPage from "@/pages/ErrorPage";
 import PastVerbPage from "@/pages/verbs/PastVerb";
-import PronounsPage from "@/pages/Pronouns";
+import PronounsPage from "@/pages/essential/Pronouns";
 import PresentVerbs from "@/pages/verbs/PresentVerbs";
-import Prular from "@/pages/Prular";
-import Babs from "@/pages/Babs";
+import Prular from "@/pages/essential/Prular";
+import Babs from "@/pages/verbs/Babs";
 import Graphics from "@/pages/interactive/Graphics";
 import MapPage from "@/pages/interactive/Map";
 import VerbTypes from "@/pages/verbs/VerbTypes";
 import Contact from "@/pages/contact/Contact";
 import SocialComments from "@/pages/contact/SocialComments";
+import Roles from "@/pages/essential/Roles";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ export const router = createBrowserRouter([
         path: "pronouns",
         element: <PronounsPage />,
         handle: { title: "Pronouns" },
+      },
+        {
+        path: "sentences-types",
+        element: <Roles />,
+        handle: { title: "Sentences Types" },
       },
       {
         path: "verbs",

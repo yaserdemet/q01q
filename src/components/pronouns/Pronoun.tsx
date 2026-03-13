@@ -9,7 +9,7 @@ import {
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-import { rows, header, renderAvatars } from "./data";
+import { rows, header, renderAvatars } from "./dataPronoun";
 import { Info } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";

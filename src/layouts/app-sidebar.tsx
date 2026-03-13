@@ -54,11 +54,15 @@ const data = {
   ],
   navMain: [
     {
-      title: "Noun and Pronoun",
+      title: "Pronoun and Sentence",
       url: "/playground",
       icon: SquareTerminal,
       isActive: true,
       items: [
+        {
+          title: "Sentences Types",
+          url: "/sentences-types",
+        },
         {
           title: "Pronouns",
           url: "/pronouns",
