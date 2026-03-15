@@ -15,6 +15,7 @@ import {
   verbType,
 } from "./data";
 import LoadingComponent from "../../ui/LoadingComponent";
+import { Button } from "@/components/ui/button";
 
 // ---------------------------------------------------
 const datasets = {
@@ -27,10 +28,41 @@ export default function PastGraphics() {
   const [dataKey, setDataKey] = React.useState<keyof typeof datasets>("tenses");
   const [typeGraphics, setTypeGraphics] = React.useState<GraphicType>("bar");
   const [loading, setLoading] = React.useState(true);
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
+  
   const dataToShow = datasets[dataKey];
+  const pageRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      if (pageRef.current?.requestFullscreen) {
+        pageRef.current.requestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  };
 
   return (
-    <div className="mt-8">
+    <div 
+      ref={pageRef} 
+      className={`mt-8 bg-background transition-all duration-300 ${
+        isFullscreen ? "h-screen w-screen p-4 flex flex-col justify-center overflow-auto" : ""
+      }`}
+    >
       <LoadingComponent loading={loading} setLoading={setLoading} />
       <GenericChart
         type={typeGraphics}
@@ -41,14 +73,15 @@ export default function PastGraphics() {
         title={changeHeader(dataKey)}
         description="Explore different categories of Qur'anic words"
         className="pt-0"
+        height={isFullscreen ? "70vh" : "350px"}
       >
-        <div className="flex items-center gap-2 sm:ml-auto">
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto sm:ml-auto justify-start sm:justify-end mt-2 sm:mt-0">
           <Select
             value={typeGraphics}
             onValueChange={(v) => setTypeGraphics(v as GraphicType)}
           >
             <SelectTrigger
-              className="w-[120px] rounded-lg"
+              className="w-full sm:w-30 rounded-lg"
               aria-label="Select type"
             >
               <SelectValue placeholder="Chart Type" />
@@ -60,7 +93,6 @@ export default function PastGraphics() {
               <SelectItem value="bar" className="rounded-lg">
                 Bar Chart
               </SelectItem>
-
               <SelectItem value="area" className="rounded-lg">
                 Area Chart
               </SelectItem>
@@ -75,7 +107,7 @@ export default function PastGraphics() {
             onValueChange={(v) => setDataKey(v as keyof typeof datasets)}
           >
             <SelectTrigger
-              className="hidden w-[160px] rounded-lg sm:flex"
+              className="w-full flex sm:w-40 rounded-lg"
               aria-label="Select count"
             >
               <SelectValue placeholder="Select Data" />
@@ -92,8 +124,12 @@ export default function PastGraphics() {
               </SelectItem>
             </SelectContent>
           </Select>
+          <Button className="w-full sm:w-auto" onClick={toggleFullscreen} variant={isFullscreen ? "secondary" : "default"}>
+            {isFullscreen ? "Exit Full Screen" : "Full Screen"}
+          </Button>
         </div>
       </GenericChart>
     </div>
   );
 }
+

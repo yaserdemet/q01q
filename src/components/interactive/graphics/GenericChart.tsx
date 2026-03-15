@@ -221,10 +221,10 @@ export default function GenericChart({
   return (
     <Card className={className}>
       {(title || description || children) && (
-        <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
-          <div className="grid flex-1 gap-1">
-            {title && <CardTitle>{title}</CardTitle>}
-            {description && <CardDescription>{description}</CardDescription>}
+        <CardHeader className="flex flex-col items-start gap-4 space-y-0 border-b py-5 sm:flex-row sm:items-center">
+          <div className="grid flex-1 gap-1 text-left">
+            {title && <CardTitle className="text-lg sm:text-xl">{title}</CardTitle>}
+            {description && <CardDescription className="text-sm">{description}</CardDescription>}
           </div>
           {children}
         </CardHeader>
