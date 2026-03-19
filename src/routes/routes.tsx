@@ -17,6 +17,7 @@ import VerbTypes from "@/pages/verbs/VerbTypes";
 import Contact from "@/pages/contact/Contact";
 import SocialComments from "@/pages/contact/SocialComments";
 import Roles from "@/pages/essential/Roles";
+import Fail from "@/pages/fail-meful/Fail";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,16 @@ export const router = createBrowserRouter([
         path: "prular",
         element: <Prular />,
         handle: { title: "Prular" },
+      },
+      {
+        path : "fail-meful",
+        children : [
+          {
+            path : "ismi-fail",
+            element : <Fail />,
+            handle : { title: "Fail" },
+          }
+        ]
       },
       {
         path: "/interactive",

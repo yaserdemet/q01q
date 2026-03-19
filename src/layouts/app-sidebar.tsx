@@ -13,6 +13,7 @@ import {
   Settings2,
   SquareTerminal,
   CombineIcon,
+  UserIcon
 } from "lucide-react";
 
 import { NavMain } from "@/layouts/nav-main";
@@ -78,6 +79,21 @@ const data = {
         },
       ],
     },
+      {
+      title: "Ismi Fail- Ismi Meful",
+      url: "#",
+      icon: UserIcon,
+      items: [
+        {
+          title: "Ismi Fail",
+          url: "/fail-meful/ismi-fail",
+        },
+        {
+          title: "Ismi Meful",
+          url: "/fail-meful/ismi-meful",
+        },
+      ],
+    },
     {
       title: "Verbs",
       url: "#",
@@ -97,7 +113,7 @@ const data = {
         },
       ],
     },
-    {
+      {
       title: "Interactive",
       url: "#",
       icon: BookOpen,
