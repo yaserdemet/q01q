@@ -18,6 +18,7 @@ import Contact from "@/pages/contact/Contact";
 import SocialComments from "@/pages/contact/SocialComments";
 import Roles from "@/pages/essential/Roles";
 import Fail from "@/pages/fail-meful/Fail";
+import AdjectivesPage from "@/pages/essential/Adjectives";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +96,11 @@ export const router = createBrowserRouter([
             path: "ismi-fail",
             element: <Fail />,
             handle: { title: "Fail" },
+          },
+          {
+            path: "adjectives",
+            element: <AdjectivesPage />,
+            handle: { title: "Adjectives" },
           },
         ],
       },

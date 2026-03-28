@@ -92,6 +92,10 @@ const data = {
           title: "Ismi Meful",
           url: "/fail-meful/ismi-meful",
         },
+        {
+          title: "Sıfatlar",
+          url: "/fail-meful/adjectives",
+        },
       ],
     },
     {
