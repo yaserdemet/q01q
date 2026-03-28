@@ -18,24 +18,15 @@ import { useMap } from "react-leaflet";
 import { MapPinIcon } from "lucide-react";
 import { changeColorOfIcon, QURAN_EVENTS, type BaseEvent, type QuranGroup } from "./data";
 export function Globe() {
-
-
   return (
     <div className="relative rounded-xl mt-8">
-      <Map
-        center={QURAN_EVENTS[0].events[0].coordinates}
-        zoom={3}
-        className="!bg-slate-900"
-      >
+      <Map center={QURAN_EVENTS[0].events[0].coordinates} zoom={3} className="!bg-slate-900">
         <MapTileLayer
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
         <MapLayers defaultLayerGroups={QURAN_EVENTS.map((group) => group.type)}>
-          <MapLayersControl
-            position="top-1 right-1"
-            layerGroupsLabel="Katmanlar"
-          />
+          <MapLayersControl position="top-1 right-1" layerGroupsLabel="Katmanlar" />
           {QURAN_EVENTS.map((group: QuranGroup) => (
             <MapLayerGroup key={group.type} name={group.type}>
               {group.events.map((event: BaseEvent) => (
@@ -56,13 +47,10 @@ export function Globe() {
                   </MapTooltip>
                   <MapPopup className="border-amber-500/50">
                     <div className="space-y-1">
-                      <h3 className="font-bold text-amber-500 text-lg">
-                        {event.name}
-                      </h3>
+                      <h3 className="font-bold text-amber-500 text-lg">{event.name}</h3>
                       {event.surah && (
                         <p className="text-xs font-medium text-muted-foreground flex items-center gap-1">
-                          <span className="text-amber-500/80">📖</span>{" "}
-                          {event.surah} {event.ayah}
+                          <span className="text-amber-500/80">📖</span> {event.surah} {event.ayah}
                         </p>
                       )}
                       {event.description && (
@@ -91,8 +79,7 @@ export function Globe() {
 
 function MapSearchControlWrapper() {
   const map = useMap();
-  const [selectedPosition, setSelectedPosition] =
-    useState<LatLngExpression | null>(null);
+  const [selectedPosition, setSelectedPosition] = useState<LatLngExpression | null>(null);
   useEffect(() => {
     if (!selectedPosition) return;
     map.panTo(selectedPosition);
@@ -101,14 +88,10 @@ function MapSearchControlWrapper() {
     <>
       <MapSearchControl
         onPlaceSelect={(feature) =>
-          setSelectedPosition(
-            [...feature.geometry.coordinates].reverse() as LatLngExpression,
-          )
+          setSelectedPosition([...feature.geometry.coordinates].reverse() as LatLngExpression)
         }
       />
-      {selectedPosition && (
-        <MapMarker position={selectedPosition} icon={<MapPinIcon />} />
-      )}
+      {selectedPosition && <MapMarker position={selectedPosition} icon={<MapPinIcon />} />}
     </>
   );
 }

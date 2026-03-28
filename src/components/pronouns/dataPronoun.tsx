@@ -1,9 +1,4 @@
-import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-  AvatarGroup,
-} from "@/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback, AvatarGroup } from "@/components/ui/avatar";
 
 export const rows = [
   {
@@ -69,11 +64,7 @@ export const renderAvatars = (type: string, index: number) => {
   return (
     <AvatarGroup className="justify-center mb-1">
       {avatars.map((src, i) => (
-        <Avatar
-          key={i}
-          size="lg"
-          className="border-2 border-background shadow-sm"
-        >
+        <Avatar key={i} size="lg" className="border-2 border-background shadow-sm">
           <AvatarImage src={src} alt="avatar" />
           <AvatarFallback className="text-[10px]">
             {type === "male" ? "M" : type === "female" ? "F" : "P"}

@@ -3,13 +3,13 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "./skeleton";
 
 interface ILoading {
-  time?:number;
+  time?: number;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const LoadingComponent = ({ loading, setLoading, time = 1200 }: ILoading) => {
   React.useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const timer = setTimeout(() => setLoading(false), time);
     return () => clearTimeout(timer);
   }, []);

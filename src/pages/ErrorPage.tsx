@@ -28,8 +28,8 @@ const ErrorPage = () => {
           </h1>
 
           <p className="text-slate-600 dark:text-slate-400 text-lg md:text-xl leading-relaxed mb-10">
-            The page you're looking for has vanished into the void. Don't worry,
-            even the best travelers lose their way sometimes.
+            The page you're looking for has vanished into the void. Don't worry, even the best
+            travelers lose their way sometimes.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">

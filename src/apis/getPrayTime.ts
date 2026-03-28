@@ -1,5 +1,4 @@
-const url =
-  "https://ezanvakti.imsakiyem.com/api/locations/districts?stateId=505";
+const url = "https://ezanvakti.imsakiyem.com/api/locations/districts?stateId=505";
 export const getPrayTime = async () => {
   try {
     const response = await fetch(url);

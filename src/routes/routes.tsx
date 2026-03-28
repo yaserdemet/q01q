@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
         element: <PronounsPage />,
         handle: { title: "Pronouns" },
       },
-        {
+      {
         path: "sentences-types",
         element: <Roles />,
         handle: { title: "Sentences Types" },
@@ -72,7 +72,7 @@ export const router = createBrowserRouter([
         element: <Babs />,
         handle: { title: "Babs" },
       },
-        {
+      {
         path: "contact",
         element: <Contact />,
         handle: { title: "Contact" },
@@ -89,14 +89,14 @@ export const router = createBrowserRouter([
         handle: { title: "Prular" },
       },
       {
-        path : "fail-meful",
-        children : [
+        path: "fail-meful",
+        children: [
           {
-            path : "ismi-fail",
-            element : <Fail />,
-            handle : { title: "Fail" },
-          }
-        ]
+            path: "ismi-fail",
+            element: <Fail />,
+            handle: { title: "Fail" },
+          },
+        ],
       },
       {
         path: "/interactive",
@@ -113,7 +113,7 @@ export const router = createBrowserRouter([
           },
         ],
       },
-        {
+      {
         path: "social",
         children: [
           {
@@ -121,7 +121,7 @@ export const router = createBrowserRouter([
             element: <Contact />,
             handle: { title: "Contact" },
           },
-            {
+          {
             path: "comments",
             element: <SocialComments />,
             handle: { title: "Comments" },

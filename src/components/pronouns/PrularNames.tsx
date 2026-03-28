@@ -57,18 +57,12 @@ const NounTable = ({
   forms: FormSet;
 }) => (
   <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white">
-    <div
-      className={`${bgColor} p-4 border-b border-slate-100 flex items-center justify-between`}
-    >
-      <h2
-        className={`${textColor} font-semibold text-lg flex items-center gap-2`}
-      >
+    <div className={`${bgColor} p-4 border-b border-slate-100 flex items-center justify-between`}>
+      <h2 className={`${textColor} font-semibold text-lg flex items-center gap-2`}>
         <span className="opacity-50 text-base">{genderIcon}</span>
         {title}
       </h2>
-      <span
-        className={`${textColor} opacity-60 text-xs font-medium uppercase tracking-wider`}
-      >
+      <span className={`${textColor} opacity-60 text-xs font-medium uppercase tracking-wider`}>
         {subtitle}
       </span>
     </div>
@@ -81,24 +75,17 @@ const NounTable = ({
           <TableHead className="py-4 font-medium text-center text-slate-500">
             İkili (Müsenna)
           </TableHead>
-          <TableHead className="py-4 font-medium text-center text-slate-500">
-            Çoğul (Cem)
-          </TableHead>
+          <TableHead className="py-4 font-medium text-center text-slate-500">Çoğul (Cem)</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow>
           <TableCell className="text-center py-10">
             <div className="flex flex-col items-center gap-1">
-              <span
-                className="text-4xl font-semibold text-slate-700 leading-relaxed"
-                dir="rtl"
-              >
+              <span className="text-4xl font-semibold text-slate-700 leading-relaxed" dir="rtl">
                 {forms.singular}
               </span>
-              <span className="text-[10px] text-slate-300 font-medium">
-                Merfu
-              </span>
+              <span className="text-[10px] text-slate-300 font-medium">Merfu</span>
             </div>
           </TableCell>
           <TableCell className="text-center py-10 border-x border-slate-50">
@@ -110,10 +97,7 @@ const NounTable = ({
                 >
                   {forms.dual.slice(-5)}
                 </span>
-                <span
-                  className={`text-4xl font-semibold leading-relaxed`}
-                  dir="rtl"
-                >
+                <span className={`text-4xl font-semibold leading-relaxed`} dir="rtl">
                   {forms.dual.slice(0, -5)}
                 </span>
               </div>
@@ -132,10 +116,7 @@ const NounTable = ({
                 >
                   {forms.plural.slice(-5)}
                 </span>
-                <span
-                  className={`text-4xl font-semibold leading-relaxed`}
-                  dir="rtl"
-                >
+                <span className={`text-4xl font-semibold leading-relaxed`} dir="rtl">
                   {forms.plural.slice(0, -5)}
                 </span>
               </div>
@@ -200,21 +181,12 @@ const PrularNames = () => {
             <SelectContent className="rounded-xl border-slate-200">
               <SelectGroup>
                 {nouns.map((noun) => (
-                  <SelectItem
-                    key={noun.base}
-                    value={noun.base}
-                    className="cursor-pointer"
-                  >
+                  <SelectItem key={noun.base} value={noun.base} className="cursor-pointer">
                     <div className="flex items-center justify-between w-full gap-8">
-                      <span
-                        className="font-bold text-lg text-slate-700"
-                        dir="rtl"
-                      >
+                      <span className="font-bold text-lg text-slate-700" dir="rtl">
                         {noun.base}
                       </span>
-                      <span className="text-sm text-slate-400 italic">
-                        {noun.meaning}
-                      </span>
+                      <span className="text-sm text-slate-400 italic">{noun.meaning}</span>
                     </div>
                   </SelectItem>
                 ))}
@@ -222,15 +194,14 @@ const PrularNames = () => {
             </SelectContent>
           </Select>
         </div>
-        <Tabs
-          onValueChange={(val) => setRoles(val)}
-          defaultValue="fail"
-          className="w-100"
-          
-        >
+        <Tabs onValueChange={(val) => setRoles(val)} defaultValue="fail" className="w-100">
           <TabsList>
-            <TabsTrigger className="hover:cursor-pointer" value="fail">Fail</TabsTrigger>
-            <TabsTrigger className="hover:cursor-pointer" value="meful">Meful</TabsTrigger>
+            <TabsTrigger className="hover:cursor-pointer" value="fail">
+              Fail
+            </TabsTrigger>
+            <TabsTrigger className="hover:cursor-pointer" value="meful">
+              Meful
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="fail">Fail Roles</TabsContent>
           <TabsContent value="meful">Meful Roles</TabsContent>
@@ -244,11 +215,7 @@ const PrularNames = () => {
           genderIcon="♂"
           bgColor="bg-blue-100"
           textColor="text-blue-700"
-          forms={
-            roles === "fail"
-              ? formsData.subject.masculine
-              : formsData.object.masculine
-          }
+          forms={roles === "fail" ? formsData.subject.masculine : formsData.object.masculine}
         />
         <NounTable
           title="Dişi (Müennes)"
@@ -256,11 +223,7 @@ const PrularNames = () => {
           genderIcon="♀"
           bgColor="bg-rose-100"
           textColor="text-rose-700"
-          forms={
-            roles === "fail"
-              ? formsData.subject.feminine
-              : formsData.object.feminine
-          }
+          forms={roles === "fail" ? formsData.subject.feminine : formsData.object.feminine}
         />
       </div>
 
@@ -269,11 +232,10 @@ const PrularNames = () => {
           💡 Bilgi Notu
         </h3>
         <p className="text-slate-600 text-xs leading-relaxed">
-          <b>Kurallı Çoğullar:</b> Eril isimlerde kelime sonuna <b>"ون"</b>,
-          dişi isimlerde ise <b>"ات"</b> eklenerek yapılır. Arapçada ayrıca{" "}
-          <b>"Cem-i Mükesser"</b> (Kırık Çoğullar) denilen kuralsız çoğullar da
-          vardır, bu tabloda sadece düzenli çekimler gösterilmektedir. İkili
-          (Müsenna) formda ise kelimenin sonuna <b>"ان"</b> eklenir.
+          <b>Kurallı Çoğullar:</b> Eril isimlerde kelime sonuna <b>"ون"</b>, dişi isimlerde ise{" "}
+          <b>"ات"</b> eklenerek yapılır. Arapçada ayrıca <b>"Cem-i Mükesser"</b> (Kırık Çoğullar)
+          denilen kuralsız çoğullar da vardır, bu tabloda sadece düzenli çekimler gösterilmektedir.
+          İkili (Müsenna) formda ise kelimenin sonuna <b>"ان"</b> eklenir.
         </p>
       </div>
     </div>

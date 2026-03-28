@@ -28,9 +28,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
       return (
         <div style={{ padding: "20px", textAlign: "center" }}>
           <h1>Something went wrong</h1>
-          <p style={{ color: "#666", marginTop: "10px" }}>
-            {this.state.error?.message}
-          </p>
+          <p style={{ color: "#666", marginTop: "10px" }}>{this.state.error?.message}</p>
           <button
             onClick={() => this.setState({ hasError: false, error: null })}
             style={{

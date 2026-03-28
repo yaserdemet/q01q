@@ -12,7 +12,7 @@ const MapPage = () => {
         explanation="This map shows the places where the Qur'an was revealed."
         Icon={MapPinIcon}
         color="text-green-500"
-      >   
+      >
         <Globe />
       </Header>
     </>

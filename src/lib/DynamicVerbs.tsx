@@ -14,11 +14,7 @@ interface DynamicVerbsProps {
   onVerbChange: (index: number) => void;
 }
 
-const DynamicVerbs = ({
-  renderVerb,
-  selectedVerbIndex,
-  onVerbChange,
-}: DynamicVerbsProps) => {
+const DynamicVerbs = ({ renderVerb, selectedVerbIndex, onVerbChange }: DynamicVerbsProps) => {
   const selectedVerb = verbs[selectedVerbIndex];
 
   return (
@@ -63,17 +59,13 @@ const DynamicVerbs = ({
                   <td className="py-2 px-4 text-xs font-semibold text-slate-500 border-r border-slate-200 bg-slate-50/30">
                     Mazi
                   </td>
-                  <td className="py-2 px-4">
-                    {renderVerb(selectedVerb.past.maleHe)}
-                  </td>
+                  <td className="py-2 px-4">{renderVerb(selectedVerb.past.maleHe)}</td>
                 </tr>
                 <tr>
                   <td className="py-2 px-4 text-xs font-semibold text-slate-500 border-r border-slate-200 bg-slate-50/30">
                     Müzari
                   </td>
-                  <td className="py-2 px-4">
-                    {renderVerb(selectedVerb.present.maleHe)}
-                  </td>
+                  <td className="py-2 px-4">{renderVerb(selectedVerb.present.maleHe)}</td>
                 </tr>
               </tbody>
             </table>

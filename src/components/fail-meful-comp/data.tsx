@@ -29,7 +29,8 @@ export const fails: FailsType[] = [
     ayah: "En'âm 95",
     ayahArabic: (
       <>
-        يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَ<span className="text-red-500 font-bold">مُخْرِجُ</span> الْمَيِّتِ مِنَ الْحَيِّ
+        يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَ
+        <span className="text-red-500 font-bold">مُخْرِجُ</span> الْمَيِّتِ مِنَ الْحَيِّ
       </>
     ),
     ayahMeaning: "O, diriyi ölüden çıkarır, ölüyü de diriden çıkarandır.",
@@ -41,7 +42,8 @@ export const fails: FailsType[] = [
     ayah: "Yunus 109",
     ayahArabic: (
       <>
-        وَاصْبِرْ حَتَّىٰ يَحْكُمَ اللَّهُ وَهُوَ خَيْرُ <span className="text-red-500 font-bold">الْحَاكِمِينَ</span>
+        وَاصْبِرْ حَتَّىٰ يَحْكُمَ اللَّهُ وَهُوَ خَيْرُ{" "}
+        <span className="text-red-500 font-bold">الْحَاكِمِينَ</span>
       </>
     ),
     ayahMeaning: "Allah hükmünü verinceye kadar sabret. O, hüküm verenlerin en hayırlısıdır.",
@@ -53,7 +55,8 @@ export const fails: FailsType[] = [
     ayah: "Hucurât 11",
     ayahArabic: (
       <>
-        وَمَن لَّمْ يَتُبْ فَأُولَٰئِكَ هُمُ <span className="text-red-500 font-bold">الظَّالِمُونَ</span>
+        وَمَن لَّمْ يَتُبْ فَأُولَٰئِكَ هُمُ{" "}
+        <span className="text-red-500 font-bold">الظَّالِمُونَ</span>
       </>
     ),
     ayahMeaning: "Kim tevbe etmezse işte onlar zalimlerin ta kendileridir.",
@@ -101,7 +104,8 @@ export const fails: FailsType[] = [
     ayah: "Hicr 23",
     ayahArabic: (
       <>
-        وَإِنَّا لَنَحْنُ نُحْيِي وَنُمِيتُ وَنَحْنُ <span className="text-red-500 font-bold">الْوَارِثُونَ</span>
+        وَإِنَّا لَنَحْنُ نُحْيِي وَنُمِيتُ وَنَحْنُ{" "}
+        <span className="text-red-500 font-bold">الْوَارِثُونَ</span>
       </>
     ),
     ayahMeaning: "Şüphesiz biz diriltiriz, biz öldürürüz ve asıl vâris biziz.",
@@ -125,7 +129,8 @@ export const fails: FailsType[] = [
     ayah: "Ahzâb 35",
     ayahArabic: (
       <>
-        وَ<span className="text-red-500 font-bold">الذَّاكِرِينَ</span> اللَّهَ كَثِيرًا وَ<span className="text-red-500 font-bold">الذَّاكِرَاتِ</span>
+        وَ<span className="text-red-500 font-bold">الذَّاكِرِينَ</span> اللَّهَ كَثِيرًا وَ
+        <span className="text-red-500 font-bold">الذَّاكِرَاتِ</span>
       </>
     ),
     ayahMeaning: "Allah'ı çokça zikreden erkekler ve zikreden kadınlar...",

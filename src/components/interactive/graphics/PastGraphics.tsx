@@ -7,13 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  changeHeader,
-  chartConfig,
-  chartData,
-  quranDerivedNounData,
-  verbType,
-} from "./data";
+import { changeHeader, chartConfig, chartData, quranDerivedNounData, verbType } from "./data";
 import LoadingComponent from "../../ui/LoadingComponent";
 import { Button } from "@/components/ui/button";
 
@@ -29,7 +23,7 @@ export default function PastGraphics() {
   const [typeGraphics, setTypeGraphics] = React.useState<GraphicType>("bar");
   const [loading, setLoading] = React.useState(true);
   const [isFullscreen, setIsFullscreen] = React.useState(false);
-  
+
   const dataToShow = datasets[dataKey];
   const pageRef = React.useRef<HTMLDivElement>(null);
 
@@ -57,8 +51,8 @@ export default function PastGraphics() {
   };
 
   return (
-    <div 
-      ref={pageRef} 
+    <div
+      ref={pageRef}
       className={`mt-8 bg-background transition-all duration-300 ${
         isFullscreen ? "h-screen w-screen p-4 flex flex-col justify-center overflow-auto" : ""
       }`}
@@ -76,14 +70,8 @@ export default function PastGraphics() {
         height={isFullscreen ? "70vh" : "350px"}
       >
         <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto sm:ml-auto justify-start sm:justify-end mt-2 sm:mt-0">
-          <Select
-            value={typeGraphics}
-            onValueChange={(v) => setTypeGraphics(v as GraphicType)}
-          >
-            <SelectTrigger
-              className="w-full sm:w-30 rounded-lg"
-              aria-label="Select type"
-            >
+          <Select value={typeGraphics} onValueChange={(v) => setTypeGraphics(v as GraphicType)}>
+            <SelectTrigger className="w-full sm:w-30 rounded-lg" aria-label="Select type">
               <SelectValue placeholder="Chart Type" />
             </SelectTrigger>
             <SelectContent className="rounded-xl">
@@ -102,14 +90,8 @@ export default function PastGraphics() {
             </SelectContent>
           </Select>
 
-          <Select
-            value={dataKey}
-            onValueChange={(v) => setDataKey(v as keyof typeof datasets)}
-          >
-            <SelectTrigger
-              className="w-full flex sm:w-40 rounded-lg"
-              aria-label="Select count"
-            >
+          <Select value={dataKey} onValueChange={(v) => setDataKey(v as keyof typeof datasets)}>
+            <SelectTrigger className="w-full flex sm:w-40 rounded-lg" aria-label="Select count">
               <SelectValue placeholder="Select Data" />
             </SelectTrigger>
             <SelectContent className="rounded-xl">
@@ -124,7 +106,11 @@ export default function PastGraphics() {
               </SelectItem>
             </SelectContent>
           </Select>
-          <Button className="w-full sm:w-auto" onClick={toggleFullscreen} variant={isFullscreen ? "secondary" : "default"}>
+          <Button
+            className="w-full sm:w-auto"
+            onClick={toggleFullscreen}
+            variant={isFullscreen ? "secondary" : "default"}
+          >
             {isFullscreen ? "Exit Full Screen" : "Full Screen"}
           </Button>
         </div>
@@ -132,4 +118,3 @@ export default function PastGraphics() {
     </div>
   );
 }
-

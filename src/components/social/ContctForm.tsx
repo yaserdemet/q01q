@@ -3,13 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { Toaster } from "../ui/sonner";
@@ -127,9 +121,7 @@ const ContactForm = () => {
       <Card className="w-full max-w-xl">
         <CardHeader>
           <CardTitle>Your Message</CardTitle>
-          <CardDescription>
-            Feel to free to say your ideas about application
-          </CardDescription>
+          <CardDescription>Feel to free to say your ideas about application</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <CardContent>
@@ -145,9 +137,7 @@ const ContactForm = () => {
                   placeholder="Your Name"
                 />
                 {errors.name && (
-                  <p className="text-red-500 text-sm">
-                    {errors.name.message as string}
-                  </p>
+                  <p className="text-red-500 text-sm">{errors.name.message as string}</p>
                 )}
               </div>
               <div className="grid gap-2">
@@ -163,9 +153,7 @@ const ContactForm = () => {
                   placeholder="Your Surname"
                 />
                 {errors.surname && (
-                  <p className="text-red-500 text-sm">
-                    {errors.surname.message as string}
-                  </p>
+                  <p className="text-red-500 text-sm">{errors.surname.message as string}</p>
                 )}
               </div>
               <div className="grid gap-2">
@@ -185,9 +173,7 @@ const ContactForm = () => {
                   placeholder="Subject"
                 />
                 {errors.title && (
-                  <p className="text-red-500 text-sm">
-                    {errors.title.message as string}
-                  </p>
+                  <p className="text-red-500 text-sm">{errors.title.message as string}</p>
                 )}
               </div>
               <div className="grid gap-2">
@@ -212,9 +198,7 @@ const ContactForm = () => {
                   type="email"
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-sm">
-                    {errors.email.message as string}
-                  </p>
+                  <p className="text-red-500 text-sm">{errors.email.message as string}</p>
                 )}
               </div>
               <div className="grid gap-2">
@@ -226,8 +210,7 @@ const ContactForm = () => {
                     required: "Description is required",
                     maxLength: {
                       value: 500,
-                      message:
-                        "Description must be at most 500 characters long",
+                      message: "Description must be at most 500 characters long",
                     },
                     minLength: {
                       value: 5,
@@ -240,9 +223,7 @@ const ContactForm = () => {
                   rows={24}
                 />
                 {errors.description && (
-                  <p className="text-red-500 text-sm">
-                    {errors.description.message as string}
-                  </p>
+                  <p className="text-red-500 text-sm">{errors.description.message as string}</p>
                 )}
               </div>
               <Button disabled={isSubmitting} type="submit" className="w-full">

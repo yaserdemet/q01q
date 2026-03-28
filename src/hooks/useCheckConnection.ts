@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const useCheckConnection = () => {
   const [isOnline, setIsOnline] = React.useState(navigator.onLine);
@@ -16,7 +16,7 @@ const useCheckConnection = () => {
     };
   }, []);
 
-  return {isOnline};
-}
+  return { isOnline };
+};
 
-export default useCheckConnection
+export default useCheckConnection;

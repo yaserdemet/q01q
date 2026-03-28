@@ -15,9 +15,7 @@ const Bab = () => {
   return (
     <div className="py-6  space-y-6 animate-in fade-in slide-in-from-left-12 duration-1000 ease-in-out">
       <div className="max-w-xs">
-        <label className="text-sm font-semibold mb-2 block text-slate-700">
-          Choose a verb:
-        </label>
+        <label className="text-sm font-semibold mb-2 block text-slate-700">Choose a verb:</label>
         <Select
           value={selectedVerbIndex.toString()}
           onValueChange={(value) => setSelectedVerbIndex(parseInt(value))}
@@ -38,9 +36,7 @@ const Bab = () => {
       <div className="overflow-hidden rounded-3xl border border-slate-100 shadow-xl bg-white transition-all">
         <div className="bg-slate-800 p-6 text-white">
           <h3 className="text-xl font-bold">Bab Karşılaştırma Tablosu</h3>
-          <p className="text-slate-400 text-sm mt-1">
-            Sülasi Mezid Fiil Kalıpları
-          </p>
+          <p className="text-slate-400 text-sm mt-1">Sülasi Mezid Fiil Kalıpları</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-right border-collapse">
@@ -59,15 +55,10 @@ const Bab = () => {
                 });
                 if (!babResult) return null;
                 return (
-                  <tr
-                    key={bab.type}
-                    className="hover:bg-indigo-50/30 transition-colors group"
-                  >
+                  <tr key={bab.type} className="hover:bg-indigo-50/30 transition-colors group">
                     <td className="px-6 py-4 text-left">
                       <div className="flex flex-col">
-                        <span className="font-bold text-slate-700">
-                          {bab.name}
-                        </span>
+                        <span className="font-bold text-slate-700">{bab.name}</span>
                         <span className="text-[10px] text-slate-400 font-mono">
                           TYPE {bab.type}
                         </span>

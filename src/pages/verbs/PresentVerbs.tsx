@@ -9,9 +9,7 @@ import { useMatches } from "react-router-dom";
 const PresentVerbs = () => {
   const matches = useMatches();
   const pathname =
-    matches
-      .filter((item) => item.pathname !== "/")
-      .map((item) => item.pathname.slice(1)) || "q01q";
+    matches.filter((item) => item.pathname !== "/").map((item) => item.pathname.slice(1)) || "q01q";
   return (
     <>
       <MetaData title="Present Verbs - q01q" description={pathname.join(" ")} />

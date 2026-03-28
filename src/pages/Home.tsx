@@ -5,7 +5,7 @@ import { Home } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import * as Sentry from '@sentry/react';
+import * as Sentry from "@sentry/react";
 import Roles from "./essential/Roles";
 export default function Page() {
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Page() {
           started. "
         Icon={Home}
       ></Header>
-  <Roles />
+      <Roles />
     </>
   );
 }

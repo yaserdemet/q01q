@@ -15,11 +15,7 @@ import {
   FolderOpen,
   Folder,
 } from "lucide-react";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { items } from "./dataSentences";
 
 const SentencesType = ({
