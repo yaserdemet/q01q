@@ -1,22 +1,21 @@
 const male = "/avatars/male.png";
 const female = "/avatars/female.png";
 export type UserComment = {
-    id : number,
-    star : number,
-    image : typeof male | typeof female,
-    name : string,
-    username : string,
-    content : string,
-}
-export const USER_COMMENTS : UserComment[] = [
+  id: number;
+  star: number;
+  image: typeof male | typeof female;
+  name: string;
+  username: string;
+  content: string;
+};
+export const USER_COMMENTS: UserComment[] = [
   {
     id: 1,
     star: 5,
     name: "Ali Yılmaz",
     image: male,
     username: "@aliyilmaz",
-    content:
-      "This app is incredibly helpful for learning Quranic Arabic. Highly recommended!",
+    content: "This app is incredibly helpful for learning Quranic Arabic. Highly recommended!",
   },
   {
     id: 2,
@@ -42,8 +41,7 @@ export const USER_COMMENTS : UserComment[] = [
     image: female,
     name: "Zeynep Çelik",
     username: "@zeynepc",
-    content:
-      "I love the new interactive map feature! Everything works smoothly.",
+    content: "I love the new interactive map feature! Everything works smoothly.",
   },
   {
     id: 5,

@@ -65,9 +65,7 @@ const Status = () => {
           {time.toLocaleTimeString()}, {time.toLocaleDateString()}
         </h1>
         <FieldLabel
-          className={StatusCheck(
-            typeof batteryStatus === "number" ? batteryStatus : 0,
-          )}
+          className={StatusCheck(typeof batteryStatus === "number" ? batteryStatus : 0)}
           htmlFor="input-field-username"
         >
           Battery
@@ -78,26 +76,20 @@ const Status = () => {
           placeholder="Your Battery Status"
           value={batteryStatus + "%"}
         />
-        <FieldDescription>
-          Your current battery status percentage.
-        </FieldDescription>
+        <FieldDescription>Your current battery status percentage.</FieldDescription>
       </Field>
       <Field className="grid  md:grid-cols-2  gap-4">
         {settingsValue.map((setting) => {
           return (
             <Field className="mt-4 max-w-4xl" key={setting.id}>
-              <FieldLabel htmlFor={`input-field-${setting.id}`}>
-                {setting.name}
-              </FieldLabel>
+              <FieldLabel htmlFor={`input-field-${setting.id}`}>{setting.name}</FieldLabel>
               <Input
                 id={`input-field-${setting.id}`}
                 type="text"
                 placeholder={`Your ${setting.name}`}
                 value={setting.value}
               />
-              <FieldDescription>
-                Your current {setting.name} setting.
-              </FieldDescription>
+              <FieldDescription>Your current {setting.name} setting.</FieldDescription>
             </Field>
           );
         })}

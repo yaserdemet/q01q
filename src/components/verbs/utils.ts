@@ -77,19 +77,9 @@ export function conjugateVerb(
       youMalePlural: "ت" + p_v + presentStemBase + DAMMA + "ونَ",
       youFemalePlural: "ت" + p_v + presentStemBase + SUKUN + "نَ",
       maleI:
-        (r1 === "أ" ? "آ" : "أ" + p_v) +
-        (r1 === "أ" ? "" : r1 + SUKUN) +
-        r2 +
-        pv2 +
-        r3 +
-        DAMMA,
+        (r1 === "أ" ? "آ" : "أ" + p_v) + (r1 === "أ" ? "" : r1 + SUKUN) + r2 + pv2 + r3 + DAMMA,
       femaleI:
-        (r1 === "أ" ? "آ" : "أ" + p_v) +
-        (r1 === "أ" ? "" : r1 + SUKUN) +
-        r2 +
-        pv2 +
-        r3 +
-        DAMMA,
+        (r1 === "أ" ? "آ" : "أ" + p_v) + (r1 === "أ" ? "" : r1 + SUKUN) + r2 + pv2 + r3 + DAMMA,
       we: "ن" + p_v + presentStemBase + DAMMA,
     },
     past: {

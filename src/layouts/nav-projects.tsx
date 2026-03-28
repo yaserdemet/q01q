@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Folder,
-  Forward,
-  MoreHorizontal,
-  Trash2,
-  type LucideIcon,
-} from "lucide-react";
+import { Folder, Forward, MoreHorizontal, Trash2, type LucideIcon } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 import {
@@ -44,8 +38,7 @@ export function NavProjects({
       <SidebarMenu>
         {projects.map((item) => {
           const isActive =
-            pathname === item.url ||
-            (item.url !== "/" && pathname.startsWith(item.url));
+            pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url));
           return (
             <SidebarMenuItem key={item.name}>
               <SidebarMenuButton asChild isActive={isActive}>

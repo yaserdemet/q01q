@@ -120,8 +120,7 @@ const VerbType = () => {
   const [selectedType, setSelectedType] = useState(ARABIC_VERB_TYPES[1].type);
 
   const currentType =
-    ARABIC_VERB_TYPES.find((t) => t.type === selectedType) ||
-    ARABIC_VERB_TYPES[0];
+    ARABIC_VERB_TYPES.find((t) => t.type === selectedType) || ARABIC_VERB_TYPES[0];
 
   return (
     <div className="flex flex-col gap-6 p-4">
@@ -145,12 +144,8 @@ const VerbType = () => {
         <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg flex items-start gap-3 mb-2 animate-in fade-in slide-in-from-left-4 duration-500">
           <Info className="text-blue-500 mt-1 flex-shrink-0" size={20} />
           <div>
-            <h3 className="font-bold text-blue-900 mb-1">
-              {currentType.title}
-            </h3>
-            <p className="text-blue-800 text-sm leading-relaxed">
-              {currentType.description}
-            </p>
+            <h3 className="font-bold text-blue-900 mb-1">{currentType.title}</h3>
+            <p className="text-blue-800 text-sm leading-relaxed">{currentType.description}</p>
           </div>
         </div>
       )}
@@ -159,29 +154,18 @@ const VerbType = () => {
         <Table>
           <TableHeader>
             <TableRow className="bg-gray-50/80 border-b">
-              <TableHead className="font-bold text-gray-700">
-                Kök (Root)
-              </TableHead>
-              <TableHead className="font-bold text-center text-gray-700">
-                Mazi (Past)
-              </TableHead>
+              <TableHead className="font-bold text-gray-700">Kök (Root)</TableHead>
+              <TableHead className="font-bold text-center text-gray-700">Mazi (Past)</TableHead>
               <TableHead className="font-bold text-center text-gray-700">
                 Müzari (Present)
               </TableHead>
-              <TableHead className="font-bold text-right text-gray-700">
-                Anlamı (Meaning)
-              </TableHead>
+              <TableHead className="font-bold text-right text-gray-700">Anlamı (Meaning)</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {currentType.examples.map((example) => (
-              <TableRow
-                key={example.root}
-                className="hover:bg-blue-50/30 transition-colors group"
-              >
-                <TableCell className="font-arabic text-3xl py-4">
-                  {example.root}
-                </TableCell>
+              <TableRow key={example.root} className="hover:bg-blue-50/30 transition-colors group">
+                <TableCell className="font-arabic text-3xl py-4">{example.root}</TableCell>
                 <TableCell className="font-arabic text-3xl text-center py-4 text-blue-700">
                   {example.past}
                 </TableCell>

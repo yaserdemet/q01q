@@ -6,10 +6,7 @@ import { Wrench } from "lucide-react";
 export default function SettingsPage() {
   return (
     <>
-      <MetaData
-        title="Settings - q01q"
-        description="Your settings and preferences."
-      />
+      <MetaData title="Settings - q01q" description="Your settings and preferences." />
 
       <Header
         header="Settings"

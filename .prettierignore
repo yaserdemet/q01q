@@ -1,0 +1,8 @@
+dist
+node_modules
+.husky
+package*.json
+*.md
+.env*
+public
+.cache

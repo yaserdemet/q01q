@@ -13,8 +13,7 @@ const Offline = () => {
         Connection Lost
       </h1>
       <p className="max-w-70 text-zinc-500 dark:text-zinc-400">
-        Oops! It looks like you're currently offline. Please check your internet
-        connection.
+        Oops! It looks like you're currently offline. Please check your internet connection.
       </p>
 
       <button

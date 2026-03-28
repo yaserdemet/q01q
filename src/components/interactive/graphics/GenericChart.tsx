@@ -17,13 +17,7 @@ import {
   Cell,
 } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartContainer,
   ChartLegend,
@@ -79,9 +73,7 @@ export default function GenericChart({
       case "pie":
         return (
           <PieChart>
-            <ChartTooltip
-              content={<ChartTooltipContent nameKey={xDataKey} hideLabel />}
-            />
+            <ChartTooltip content={<ChartTooltipContent nameKey={xDataKey} hideLabel />} />
             <Pie data={data} dataKey={categories[0]} nameKey={xDataKey}>
               <LabelList
                 dataKey={xDataKey}
@@ -105,13 +97,7 @@ export default function GenericChart({
               interval={0}
               padding={{ left: 20, right: 20 }}
             />
-            <YAxis
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickCount={3}
-              hide
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} tickCount={3} hide />
             <ChartTooltip content={<ChartTooltipContent />} />
             <ChartLegend content={<ChartLegendContent />} />
             {categories.map((key) => {
@@ -145,13 +131,7 @@ export default function GenericChart({
               interval={0}
               padding={{ left: 20, right: 20 }}
             />
-            <YAxis
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickCount={3}
-              hide
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} tickCount={3} hide />
             <ChartTooltip content={<ChartTooltipContent />} />
             <ChartLegend content={<ChartLegendContent />} />
             {categories.map((key) => {
@@ -184,22 +164,11 @@ export default function GenericChart({
               axisLine={false}
               className="text-xl font-arabic"
             />
-            <YAxis
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickCount={3}
-              hide
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} tickCount={3} hide />
             <ChartTooltip content={<ChartTooltipContent />} />
             <ChartLegend content={<ChartLegendContent />} />
             {categories.map((key) => (
-              <Bar
-                key={key}
-                dataKey={key}
-                radius={[4, 4, 0, 0]}
-                strokeWidth={2}
-              >
+              <Bar key={key} dataKey={key} radius={[4, 4, 0, 0]} strokeWidth={2}>
                 {data.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
@@ -230,11 +199,7 @@ export default function GenericChart({
         </CardHeader>
       )}
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
-        <ChartContainer
-          config={config}
-          className={`aspect-auto w-full`}
-          style={{ height }}
-        >
+        <ChartContainer config={config} className={`aspect-auto w-full`} style={{ height }}>
           {renderChart()}
         </ChartContainer>
       </CardContent>

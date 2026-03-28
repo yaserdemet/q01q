@@ -59,16 +59,10 @@ const Comments = () => {
                     </Avatar>
                     <div className="flex gap-2">
                       {Array.from({ length: comment.star }).map((_, i) => (
-                        <Star
-                          fill="currentColor"
-                          key={i}
-                          className="text-yellow-500"
-                        />
+                        <Star fill="currentColor" key={i} className="text-yellow-500" />
                       ))}
                     </div>
-                    <p className="text-sm italic text-muted-foreground">
-                      "{comment.content}"
-                    </p>
+                    <p className="text-sm italic text-muted-foreground">"{comment.content}"</p>
                     <div className="mt-2">
                       <p className="font-semibold text-sm">{comment.name}</p>
 

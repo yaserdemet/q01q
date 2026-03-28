@@ -1,19 +1,7 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { useState } from "react";
 import { fails } from "./data";
 import { CheckCircle2Icon } from "lucide-react";
@@ -82,7 +70,10 @@ export function HeaderTab({ types }: { types: Role }) {
             </TabsTrigger>
           ))}
         </TabsList> */}
-        <Select defaultValue={selectedRoot} onValueChange={(value: string) => setSelectedRoot(value)}>
+        <Select
+          defaultValue={selectedRoot}
+          onValueChange={(value: string) => setSelectedRoot(value)}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Select a root" />
           </SelectTrigger>
@@ -112,19 +103,12 @@ export function HeaderTab({ types }: { types: Role }) {
             <Alert className="max-w-md">
               <CheckCircle2Icon />
               <AlertTitle>
-                Örnek Ayet (
-                {fails.find((item) => item.root === selectedRoot)?.ayah}){" "}
+                Örnek Ayet ({fails.find((item) => item.root === selectedRoot)?.ayah}){" "}
               </AlertTitle>
               <AlertDescription>
                 <div className="flex">
-                  <span
-                    className="text-2xl font-arabic text-slate-800"
-                    dir="rtl"
-                  >
-                    {
-                      fails.find((item) => item.root === selectedRoot)
-                        ?.ayahArabic
-                    }
+                  <span className="text-2xl font-arabic text-slate-800" dir="rtl">
+                    {fails.find((item) => item.root === selectedRoot)?.ayahArabic}
                   </span>
                 </div>
                 {fails.find((item) => item.root === selectedRoot)?.ayahMeaning}

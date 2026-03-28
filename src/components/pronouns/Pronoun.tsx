@@ -24,8 +24,7 @@ const Pronoun = () => {
 
         <AlertTitle>This table show Arabic pronouns</AlertTitle>
         <AlertDescription>
-          First pronouns form as alone in context. Second pronouns are added
-          word as suffix.
+          First pronouns form as alone in context. Second pronouns are added word as suffix.
         </AlertDescription>
         <div className="mt-2 flex items-center gap-2">
           <Switch

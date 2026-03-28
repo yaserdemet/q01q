@@ -52,11 +52,7 @@ const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
       return (
         <span dir="rtl" className="text-2xl font-bold">
           <span className="text-slate-600">{stem}</span>
-          {suffix && (
-            <span className="text-amber-600 bg-amber-50 px-0.5 rounded">
-              {suffix}
-            </span>
-          )}
+          {suffix && <span className="text-amber-600 bg-amber-50 px-0.5 rounded">{suffix}</span>}
         </span>
       );
     } else {
@@ -79,15 +75,9 @@ const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
 
       return (
         <span dir="rtl" className="text-2xl font-bold">
-          <span className="text-indigo-600 bg-indigo-50 px-0.5 rounded">
-            {prefix}
-          </span>
+          <span className="text-indigo-600 bg-indigo-50 px-0.5 rounded">{prefix}</span>
           <span className="text-slate-600">{stem}</span>
-          {suffix && (
-            <span className="text-amber-600 bg-amber-50 px-0.5 rounded">
-              {suffix}
-            </span>
-          )}
+          {suffix && <span className="text-amber-600 bg-amber-50 px-0.5 rounded">{suffix}</span>}
         </span>
       );
     }
@@ -113,18 +103,10 @@ const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
         <Table>
           <TableHeader>
             <TableRow className="bg-slate-50/80 border-b">
-              <TableHead className="font-bold text-slate-500 w-[150px]">
-                Category
-              </TableHead>           
-              <TableHead className="font-bold text-center text-slate-900">
-                Plural
-              </TableHead>
-                <TableHead className="font-bold text-center text-slate-900">
-                Dual
-              </TableHead>
-               <TableHead className="font-bold text-center text-slate-900">
-                Singular
-              </TableHead>
+              <TableHead className="font-bold text-slate-500 w-[150px]">Category</TableHead>
+              <TableHead className="font-bold text-center text-slate-900">Plural</TableHead>
+              <TableHead className="font-bold text-center text-slate-900">Dual</TableHead>
+              <TableHead className="font-bold text-center text-slate-900">Singular</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -139,10 +121,7 @@ const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
                 {[...row.cells].reverse().map((cell, cellIdx) => (
                   <TableCell key={cellIdx} className="text-center py-6">
                     <div className="flex flex-col items-center gap-1">
-                      <div
-                        className="font-bold text-xl text-slate-900 mb-0.5"
-                        dir="rtl"
-                      >
+                      <div className="font-bold text-xl text-slate-900 mb-0.5" dir="rtl">
                         {cell.pronoun}
                       </div>
                       <div className="text-[10px] uppercase font-bold text-slate-400 tracking-tighter mb-2">
@@ -152,9 +131,7 @@ const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
                         className={`${getVerbColor(row.type)} transition-transform hover:scale-110 duration-200`}
                       >
                         {displayVerb(
-                          selectedVerb[tense][
-                            cell.key as keyof typeof selectedVerb.past
-                          ],
+                          selectedVerb[tense][cell.key as keyof typeof selectedVerb.past],
                         )}
                       </div>
                     </div>
