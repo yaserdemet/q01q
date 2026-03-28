@@ -10,30 +10,45 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import { rows, header, renderAvatars } from "./dataPronoun";
-import { Info } from "lucide-react";
+import { Download, Info } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { Button } from "../ui/button";
+import DownloadButton from "../ui/downloadButton";
 
 const Pronoun = () => {
   const [showSuffix, setShowSuffix] = useState<boolean>(true);
   return (
     <div className="animate-in fade-in slide-in-from-left-12 duration-1000 ease-in-out">
-      <Alert className="max-w-5xl my-12 border-green-200 bg-green-100 text-blue-600 dark:border-green-900 dark:bg-green-950 dark:text-blue-50">
-        <Info />
-
-        <AlertTitle>This table show Arabic pronouns</AlertTitle>
-        <AlertDescription>
-          First pronouns form as alone in context. Second pronouns are added word as suffix.
-        </AlertDescription>
-        <div className="mt-2 flex items-center gap-2">
-          <Switch
-            className="data-[state=checked]:bg-blue-600 hover:cursor-pointer"
-            id="show-suffix"
-            checked={showSuffix}
-            onCheckedChange={setShowSuffix}
-          />
-          <Label htmlFor="show-suffix">Show Suffix</Label>
+      <Alert className="max-w-5xl my-12">
+        <Info className="h-4 w-4" />
+        <div className="col-start-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="grid gap-1">
+            <AlertTitle>This table shows Arabic pronouns</AlertTitle>
+            <AlertDescription>
+              First pronouns form as alone in context. Second pronouns are added word as suffix.
+            </AlertDescription>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Switch
+                className="hover:cursor-pointer"
+                id="show-suffix"
+                checked={showSuffix}
+                onCheckedChange={setShowSuffix}
+              />
+              <Label htmlFor="show-suffix" className="cursor-pointer whitespace-nowrap">
+                Show Suffix
+              </Label>
+            </div>
+            <DownloadButton
+              text="Download"
+              linkAdress="/files/pronoun.pdf"
+              link="pronoun.pdf"
+              toolTipText="Download Pronoun Table"
+            />
+          </div>
         </div>
       </Alert>
       <div className="rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden">

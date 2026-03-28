@@ -8,6 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Info } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 const VerbType = () => {
   const ARABIC_VERB_TYPES = [
@@ -126,28 +128,23 @@ const VerbType = () => {
     <div className="flex flex-col gap-6 p-4">
       <div className="flex flex-wrap gap-2 mb-4">
         {ARABIC_VERB_TYPES.map((item) => (
-          <button
+          <Button
             key={item.type}
+            variant={selectedType === item.type ? "default" : "outline"}
             onClick={() => setSelectedType(item.type)}
-            className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium ${
-              selectedType === item.type
-                ? "bg-blue-600 text-white shadow-md transform scale-105"
-                : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
-            }`}
+            className="transition-all duration-200"
           >
             {item.title}
-          </button>
+          </Button>
         ))}
       </div>
 
       {currentType && (
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg flex items-start gap-3 mb-2 animate-in fade-in slide-in-from-left-4 duration-500">
-          <Info className="text-blue-500 mt-1 flex-shrink-0" size={20} />
-          <div>
-            <h3 className="font-bold text-blue-900 mb-1">{currentType.title}</h3>
-            <p className="text-blue-800 text-sm leading-relaxed">{currentType.description}</p>
-          </div>
-        </div>
+        <Alert className="mb-6 animate-in fade-in slide-in-from-left-4 duration-500 shadow-sm">
+          <Info size={20} />
+          <AlertTitle className="font-bold">{currentType.title}</AlertTitle>
+          <AlertDescription>{currentType.description}</AlertDescription>
+        </Alert>
       )}
 
       <div className="rounded-xl border border-gray-200 shadow-sm overflow-hidden bg-white">

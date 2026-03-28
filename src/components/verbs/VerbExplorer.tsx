@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import { tableRows, verbs } from "./data";
 import DynamicVerbs from "@/lib/DynamicVerbs";
+import DownloadButton from "../ui/downloadButton";
 
 interface VerbExplorerProps {
   tense: "past" | "present";
@@ -96,6 +97,12 @@ const VerbExplorer: React.FC<VerbExplorerProps> = ({ tense, renderVerb }) => {
           renderVerb={displayVerb}
           selectedVerbIndex={selectedVerbIndex}
           onVerbChange={setSelectedVerbIndex}
+        />
+        <DownloadButton
+          text="Download Pdf"
+          linkAdress="/files/practice.pdf"
+          link="practice.pdf"
+          toolTipText="Make Practice with Verbs"
         />
       </div>
 
