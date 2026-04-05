@@ -2,7 +2,6 @@ import { HeaderTab } from "@/components/fail-meful-comp/Header";
 import Header from "@/components/ui/Header";
 import MetaData from "@/lib/MetaData";
 import { User } from "lucide-react";
-import React from "react";
 
 const Fail = () => {
   return (

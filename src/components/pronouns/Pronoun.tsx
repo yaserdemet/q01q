@@ -10,12 +10,11 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import { rows, header, renderAvatars } from "./dataPronoun";
-import { Download, Info } from "lucide-react";
+import { Info } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { Button } from "../ui/button";
-import DownloadButton from "../ui/downloadButton";
+import DownloadButton from "../ui/DownloadButton";
 
 const Pronoun = () => {
   const [showSuffix, setShowSuffix] = useState<boolean>(true);

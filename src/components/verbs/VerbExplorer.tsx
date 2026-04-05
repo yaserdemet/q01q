@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/table";
 import { tableRows, verbs } from "./data";
 import DynamicVerbs from "@/lib/DynamicVerbs";
-import DownloadButton from "../ui/downloadButton";
+import DownloadButton from "../ui/DownloadButton";
 
 interface VerbExplorerProps {
   tense: "past" | "present";
