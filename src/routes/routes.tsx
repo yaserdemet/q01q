@@ -154,8 +154,8 @@ export const router = createBrowserRouter([
             path: ":id",
             element: <SurahDetail />,
             handle: { title: "Sure Detayı" },
-          }
-        ]
+          },
+        ],
       },
     ],
   },

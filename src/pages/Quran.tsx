@@ -46,10 +46,7 @@ export default function Quran() {
   const { ref: searchObserverRef, inView: searchInView } = useInView();
 
   // All Surahs Base Data
-  const { 
-    data: allSurahsData,
-    isLoading: isLoadingSurahs,
-  } = useQuery({
+  const { data: allSurahsData, isLoading: isLoadingSurahs } = useQuery({
     queryKey: ["surahsBase"],
     queryFn: fetchSurahs,
     staleTime: Infinity, // Don't refetch since it never changes
@@ -60,7 +57,7 @@ export default function Quran() {
     data: surahPages,
     fetchNextPage: fetchNextSurahPage,
     hasNextPage: hasNextSurahPage,
-    status: surahsInfiniteStatus
+    status: surahsInfiniteStatus,
   } = useInfiniteQuery({
     queryKey: ["surahsInfinite", !!allSurahsData],
     queryFn: ({ pageParam = 0 }) => {
@@ -68,7 +65,7 @@ export default function Quran() {
       return allSurahsData?.slice(pageParam, pageParam + limit) || [];
     },
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
+    getNextPageParam: (_, allPages) => {
       const totalLoaded = allPages.reduce((acc, page) => acc + page.length, 0);
       if (allSurahsData && totalLoaded < allSurahsData.length) {
         return totalLoaded;
@@ -102,7 +99,7 @@ export default function Quran() {
       return searchResults?.slice(pageParam, pageParam + limit) || [];
     },
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
+    getNextPageParam: (_, allPages) => {
       const totalLoaded = allPages.reduce((acc, page) => acc + page.length, 0);
       if (searchResults && totalLoaded < searchResults.length) {
         return totalLoaded;
@@ -197,7 +194,10 @@ export default function Quran() {
                         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 font-bold text-lg hexagon-shape relative">
                           {surah.number}
                         </div>
-                        <h2 className="text-2xl font-arabic text-emerald-800 dark:text-emerald-400 font-bold" dir="rtl">
+                        <h2
+                          className="text-2xl font-arabic text-emerald-800 dark:text-emerald-400 font-bold"
+                          dir="rtl"
+                        >
                           {surah.name}
                         </h2>
                       </div>
@@ -221,7 +221,7 @@ export default function Quran() {
               </Fragment>
             ))}
           </div>
-          
+
           <div ref={observerRef} className="py-8 flex justify-center">
             {hasNextSurahPage && (
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>
@@ -247,9 +247,10 @@ export default function Quran() {
         <div>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-              <span className="text-emerald-600">"{debouncedSearchQuery}"</span> için sonuçlar ({searchResults.length} ayet)
+              <span className="text-emerald-600">"{debouncedSearchQuery}"</span> için sonuçlar (
+              {searchResults.length} ayet)
             </h2>
-            <button 
+            <button
               onClick={clearSearch}
               className="flex items-center space-x-2 text-gray-500 hover:text-emerald-600 transition-colors bg-gray-100 hover:bg-emerald-50 px-4 py-2 rounded-lg"
             >
@@ -257,7 +258,7 @@ export default function Quran() {
               <span>Aramayı Temizle</span>
             </button>
           </div>
-          
+
           {searchResults.length === 0 ? (
             <div className="text-center py-12 bg-gray-50 rounded-xl border border-dashed border-gray-300">
               <p className="text-gray-500 text-lg">Arama sonucunda hiçbir ayet bulunamadı.</p>
@@ -267,7 +268,7 @@ export default function Quran() {
               {searchPages.pages.map((page, i) => (
                 <Fragment key={i}>
                   {page.map((match, j) => (
-                    <Link 
+                    <Link
                       to={`/quran/${match.surah.number}?edition=${edition}`}
                       key={`${match.number}-${i}-${j}`}
                       className="block bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-emerald-300 transition-all shadow-sm group"
@@ -281,13 +282,15 @@ export default function Quran() {
                           Ayet {match.numberInSurah}
                         </span>
                       </div>
-                      <div className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed" 
-                           dangerouslySetInnerHTML={{
-                             __html: match.text.replace(
-                               new RegExp(debouncedSearchQuery, "gi"),
-                               (m) => `<span class="bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200 px-1 rounded">${m}</span>`
-                             )
-                           }}
+                      <div
+                        className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                        dangerouslySetInnerHTML={{
+                          __html: match.text.replace(
+                            new RegExp(debouncedSearchQuery, "gi"),
+                            (m) =>
+                              `<span class="bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200 px-1 rounded">${m}</span>`,
+                          ),
+                        }}
                       />
                       <div className="text-right mt-2 text-emerald-500 opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 transition-all text-sm font-medium">
                         Sureye Git &rarr;
@@ -296,7 +299,7 @@ export default function Quran() {
                   ))}
                 </Fragment>
               ))}
-              
+
               <div ref={searchObserverRef} className="py-8 flex justify-center">
                 {hasNextSearchPage && (
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>

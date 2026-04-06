@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Activity, ArrowLeft, Book, Disc, Hash, Layers, Layout, List, Map } from "lucide-react";
+import { Activity, Book, Disc, Hash, Layers, Layout, List, Map } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -15,7 +15,7 @@ interface SajdaReference extends Reference {
 
 interface MetaData {
   ayahs: { count: number };
-  surahs: { count: number; references: any[] };
+  surahs: { count: number; references: Reference[] };
   sajdas: { count: number; references: SajdaReference[] };
   rukus: { count: number; references: Reference[] };
   pages: { count: number; references: Reference[] };
@@ -30,7 +30,11 @@ const fetchQuranMeta = async () => {
 };
 
 export default function QuranMeta() {
-  const { data: meta, isLoading, error } = useQuery({
+  const {
+    data: meta,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["quranMeta"],
     queryFn: fetchQuranMeta,
   });
@@ -52,14 +56,70 @@ export default function QuranMeta() {
   }
 
   const stats = [
-    { title: "Toplam Sure", count: meta.surahs.count, icon: Book, color: "text-blue-500", bg: "bg-blue-100 dark:bg-blue-900/30", border: "border-blue-200 dark:border-blue-800" },
-    { title: "Toplam Ayet", count: meta.ayahs.count, icon: Hash, color: "text-emerald-500", bg: "bg-emerald-100 dark:bg-emerald-900/30", border: "border-emerald-200 dark:border-emerald-800" },
-    { title: "Cüz", count: meta.juzs.count, icon: Disc, color: "text-amber-500", bg: "bg-amber-100 dark:bg-amber-900/30", border: "border-amber-200 dark:border-amber-800" },
-    { title: "Sayfa", count: meta.pages.count, icon: Layout, color: "text-purple-500", bg: "bg-purple-100 dark:bg-purple-900/30", border: "border-purple-200 dark:border-purple-800" },
-    { title: "Secde Ayetleri", count: meta.sajdas.count, icon: Activity, color: "text-red-500", bg: "bg-red-100 dark:bg-red-900/30", border: "border-red-200 dark:border-red-800" },
-    { title: "Rüku", count: meta.rukus.count, icon: Layers, color: "text-cyan-500", bg: "bg-cyan-100 dark:bg-cyan-900/30", border: "border-cyan-200 dark:border-cyan-800" },
-    { title: "Hizb Çeyreği", count: meta.hizbQuarters.count, icon: List, color: "text-indigo-500", bg: "bg-indigo-100 dark:bg-indigo-900/30", border: "border-indigo-200 dark:border-indigo-800" },
-    { title: "Menzil", count: meta.manzils.count, icon: Map, color: "text-pink-500", bg: "bg-pink-100 dark:bg-pink-900/30", border: "border-pink-200 dark:border-pink-800" },
+    {
+      title: "Toplam Sure",
+      count: meta.surahs.count,
+      icon: Book,
+      color: "text-blue-500",
+      bg: "bg-blue-100 dark:bg-blue-900/30",
+      border: "border-blue-200 dark:border-blue-800",
+    },
+    {
+      title: "Toplam Ayet",
+      count: meta.ayahs.count,
+      icon: Hash,
+      color: "text-emerald-500",
+      bg: "bg-emerald-100 dark:bg-emerald-900/30",
+      border: "border-emerald-200 dark:border-emerald-800",
+    },
+    {
+      title: "Cüz",
+      count: meta.juzs.count,
+      icon: Disc,
+      color: "text-amber-500",
+      bg: "bg-amber-100 dark:bg-amber-900/30",
+      border: "border-amber-200 dark:border-amber-800",
+    },
+    {
+      title: "Sayfa",
+      count: meta.pages.count,
+      icon: Layout,
+      color: "text-purple-500",
+      bg: "bg-purple-100 dark:bg-purple-900/30",
+      border: "border-purple-200 dark:border-purple-800",
+    },
+    {
+      title: "Secde Ayetleri",
+      count: meta.sajdas.count,
+      icon: Activity,
+      color: "text-red-500",
+      bg: "bg-red-100 dark:bg-red-900/30",
+      border: "border-red-200 dark:border-red-800",
+    },
+    {
+      title: "Rüku",
+      count: meta.rukus.count,
+      icon: Layers,
+      color: "text-cyan-500",
+      bg: "bg-cyan-100 dark:bg-cyan-900/30",
+      border: "border-cyan-200 dark:border-cyan-800",
+    },
+    {
+      title: "Hizb Çeyreği",
+      count: meta.hizbQuarters.count,
+      icon: List,
+      color: "text-indigo-500",
+      bg: "bg-indigo-100 dark:bg-indigo-900/30",
+      border: "border-indigo-200 dark:border-indigo-800",
+    },
+    {
+      title: "Menzil",
+      count: meta.manzils.count,
+      icon: Map,
+      color: "text-pink-500",
+      bg: "bg-pink-100 dark:bg-pink-900/30",
+      border: "border-pink-200 dark:border-pink-800",
+    },
   ];
 
   return (
@@ -79,11 +139,13 @@ export default function QuranMeta() {
         {stats.map((item, index) => {
           const Icon = item.icon;
           return (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`p-6 rounded-2xl border ${item.border} bg-white dark:bg-gray-800/50 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group`}
             >
-              <div className={`absolute -right-4 -bottom-4 w-24 h-24 ${item.color} opacity-[0.05] group-hover:scale-110 transition-transform`}>
+              <div
+                className={`absolute -right-4 -bottom-4 w-24 h-24 ${item.color} opacity-[0.05] group-hover:scale-110 transition-transform`}
+              >
                 <Icon className="w-full h-full" />
               </div>
               <div className="flex items-center space-x-4">
@@ -114,11 +176,11 @@ export default function QuranMeta() {
             Kuran-ı Kerim'deki {meta.sajdas.count} secde ayetinin bulunduğu yerler
           </p>
         </div>
-        
+
         <div className="p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {meta.sajdas.references.map((sajda, idx) => (
-              <Link 
+              <Link
                 to={`/quran/${sajda.surah}`}
                 key={idx}
                 className="flex items-center justify-between p-4 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-emerald-300 dark:hover:border-emerald-700 bg-gray-50 dark:bg-gray-800/80 transition-colors group cursor-pointer"
@@ -128,7 +190,9 @@ export default function QuranMeta() {
                     {idx + 1}
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-800 dark:text-gray-200">Sure {sajda.surah}</div>
+                    <div className="font-semibold text-gray-800 dark:text-gray-200">
+                      Sure {sajda.surah}
+                    </div>
                     <div className="text-sm text-gray-500">Ayet {sajda.ayah}</div>
                   </div>
                 </div>
