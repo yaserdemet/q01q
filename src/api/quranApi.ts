@@ -75,5 +75,5 @@ export const quranApi = {
   fetchQuranMetaAll: async () => {
     const { data } = await quranClient.get("/meta");
     return data.data;
-  }
+  },
 };

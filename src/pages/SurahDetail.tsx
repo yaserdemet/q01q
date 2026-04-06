@@ -35,8 +35,12 @@ const fetchSurahMeta = async (id: string) => {
 
 const fetchAyahsPage = async (id: string, edition: string, offset: number, limit: number) => {
   const [arabicRes, translationRes] = await Promise.all([
-    axios.get(`https://api.alquran.cloud/v1/surah/${id}/ar.alafasy?offset=${offset}&limit=${limit}`),
-    axios.get(`https://api.alquran.cloud/v1/surah/${id}/${edition}?offset=${offset}&limit=${limit}`),
+    axios.get(
+      `https://api.alquran.cloud/v1/surah/${id}/ar.alafasy?offset=${offset}&limit=${limit}`,
+    ),
+    axios.get(
+      `https://api.alquran.cloud/v1/surah/${id}/${edition}?offset=${offset}&limit=${limit}`,
+    ),
   ]);
 
   return {
@@ -51,23 +55,27 @@ export default function SurahDetail() {
   const edition = searchParams.get("edition") || "tr.diyanet";
   const { ref: observerRef, inView } = useInView();
 
-  const { data: metaData, isLoading: isLoadingMeta, error: metaError } = useQuery({
+  const {
+    data: metaData,
+    isLoading: isLoadingMeta,
+    error: metaError,
+  } = useQuery({
     queryKey: ["surahMeta", id],
     queryFn: () => fetchSurahMeta(id!),
     enabled: !!id,
   });
 
-  const { 
-    data: pagesData, 
-    fetchNextPage, 
-    hasNextPage, 
-    isFetchingNextPage, 
-    status: infiniteStatus 
+  const {
+    data: pagesData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status: infiniteStatus,
   } = useInfiniteQuery({
     queryKey: ["surahAyahs", id, edition],
     queryFn: ({ pageParam = 0 }) => fetchAyahsPage(id!, edition, pageParam, 20),
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
+    getNextPageParam: (_, allPages) => {
       const totalLoaded = allPages.reduce((acc, page) => acc + page.arabicAyahs.length, 0);
       if (metaData && totalLoaded < metaData.numberOfAyahs) {
         return totalLoaded;
@@ -103,8 +111,8 @@ export default function SurahDetail() {
 
   return (
     <div className="p-6 md:p-10 max-w-5xl mx-auto min-h-screen">
-      <Link 
-        to="/quran" 
+      <Link
+        to="/quran"
         className="inline-flex items-center text-emerald-600 hover:text-emerald-800 mb-6 font-medium transition-colors"
       >
         <ArrowLeft className="w-4 h-4 mr-2" />
@@ -115,7 +123,7 @@ export default function SurahDetail() {
         <div className="absolute opacity-10 right-0 top-0 w-64 h-64 -mr-10 -mt-10">
           <BookOpenText className="w-full h-full" />
         </div>
-        
+
         <h1 className="text-4xl md:text-6xl font-arabic font-bold mb-4" dir="rtl">
           {metaData.name}
         </h1>
@@ -137,37 +145,37 @@ export default function SurahDetail() {
           <Fragment key={pageIndex}>
             {page.arabicAyahs.map((ayah, index) => {
               const translationAyah = page.translationAyahs[index];
-              
+
               return (
-                <div 
+                <div
                   key={ayah.numberInSurah}
                   className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow relative"
                 >
                   <div className="absolute top-6 left-6 flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
                     {ayah.numberInSurah}
                   </div>
-                  
+
                   <div className="ml-12 mb-6">
-                    <div 
+                    <div
                       className="text-2xl md:text-3xl lg:text-4xl font-arabic text-gray-800 dark:text-gray-100 leading-loose md:leading-loose lg:leading-loose text-right mb-6"
                       dir="rtl"
                     >
                       {ayah.text}
                     </div>
-                    
+
                     {ayah.audio && (
                       <div className="flex justify-end mb-6">
-                        <audio 
-                          controls 
-                          preload="none" 
-                          src={ayah.audio} 
+                        <audio
+                          controls
+                          preload="none"
+                          src={ayah.audio}
                           className="h-10 w-full max-w-sm rounded-[24px] shadow-sm [&::-webkit-media-controls-panel]:bg-emerald-50 dark:[&::-webkit-media-controls-panel]:bg-emerald-900/30"
                         />
                       </div>
                     )}
-                    
+
                     <div className="w-full h-px bg-gray-100 dark:bg-gray-700 my-4" />
-                    
+
                     <div className="text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed">
                       {translationAyah?.text}
                     </div>

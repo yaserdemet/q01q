@@ -17,7 +17,8 @@ const DownloadButton = ({ text, linkAdress, link, toolTipText = "Download" }: ID
   const downloadPdf = () => {
     const createLink = document.createElement("a");
     createLink.href = linkAdress;
-    ((createLink.download = link), createLink.click());
+    createLink.download = link;
+    createLink.click();
   };
   const makeLoading = () => {
     setLoading(true);

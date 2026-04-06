@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -28,12 +28,13 @@ const SentencesType = ({
   const [isNounOpen, setIsNounOpen] = useState(activeTab === "noun");
   const [nounType, setNounType] = useState<"normal" | "inneli">("normal");
 
-  // Keep tree open if activeTab from parent becomes noun (e.g., from some other source)
-  useEffect(() => {
+  const [prevActiveTab, setPrevActiveTab] = useState(activeTab);
+  if (activeTab !== prevActiveTab) {
+    setPrevActiveTab(activeTab);
     if (activeTab === "noun") {
       setIsNounOpen(true);
     }
-  }, [activeTab]);
+  }
 
   return (
     <div className="animate-in fade-in slide-in-from-left-12 duration-1000 ease-in-out flex mt-8 flex-col md:flex-row gap-8 w-full max-w-5xl items-start pb-10">

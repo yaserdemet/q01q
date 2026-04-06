@@ -6,14 +6,18 @@ import { useEffect } from "react";
 
 const Fail = () => {
   const getQuran = async () => {
-    const data = await fetch("http://api.alquran.cloud/v1/meta")
-    const response = await JSON.stringify(data)
-    console.log("response", response)
-    return response
-  }
-  useEffect(() =>{
-    getQuran()
-  },[])
+    try {
+      const response = await fetch("https://api.alquran.cloud/v1/meta");
+      const data = await response.json();
+      console.log("response", data);
+      return data;
+    } catch (error) {
+      console.error("Failed to fetch Quran meta:", error);
+    }
+  };
+  useEffect(() => {
+    getQuran();
+  }, []);
   return (
     <>
       <MetaData title="Ismi Fail - q01q" description="Your history and past interactions." />
