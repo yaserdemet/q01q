@@ -133,6 +133,21 @@ const data = {
       ],
     },
     {
+      title: "Kuran-ı Kerim",
+      url: "#",
+      icon: BookOpenText,
+      items: [
+        {
+          title: "Sureler",
+          url: "/quran",
+        },
+        {
+          title: "İstatistikler",
+          url: "/quran/meta",
+        },
+      ],
+    },
+    {
       title: "Settings",
       url: "#",
       icon: Settings2,

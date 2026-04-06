@@ -19,6 +19,9 @@ import SocialComments from "@/pages/contact/SocialComments";
 import Roles from "@/pages/essential/Roles";
 import Fail from "@/pages/fail-meful/Fail";
 import AdjectivesPage from "@/pages/essential/Adjectives";
+import Quran from "@/pages/Quran";
+import SurahDetail from "@/pages/SurahDetail";
+import QuranMeta from "@/pages/QuranMeta";
 
 export const router = createBrowserRouter([
   {
@@ -133,6 +136,26 @@ export const router = createBrowserRouter([
             handle: { title: "Comments" },
           },
         ],
+      },
+      {
+        path: "quran",
+        children: [
+          {
+            index: true,
+            element: <Quran />,
+            handle: { title: "Kuran-ı Kerim" },
+          },
+          {
+            path: "meta",
+            element: <QuranMeta />,
+            handle: { title: "İstatistikler" },
+          },
+          {
+            path: ":id",
+            element: <SurahDetail />,
+            handle: { title: "Sure Detayı" },
+          }
+        ]
       },
     ],
   },
