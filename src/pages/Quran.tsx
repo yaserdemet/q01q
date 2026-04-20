@@ -41,7 +41,7 @@ export default function Quran() {
       return allSurahsData?.slice(pageParam, pageParam + limit) || [];
     },
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
+    getNextPageParam: (_lastPage, allPages) => {
       const totalLoaded = allPages.reduce((acc, page) => acc + page.length, 0);
       if (allSurahsData && totalLoaded < allSurahsData.length) {
         return totalLoaded;
@@ -75,7 +75,7 @@ export default function Quran() {
       return searchResults?.slice(pageParam, pageParam + limit) || [];
     },
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
+    getNextPageParam: (_lastPage, allPages) => {
       const totalLoaded = allPages.reduce((acc, page) => acc + page.length, 0);
       if (searchResults && totalLoaded < searchResults.length) {
         return totalLoaded;
