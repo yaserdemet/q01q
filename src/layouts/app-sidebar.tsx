@@ -108,11 +108,11 @@ const data = {
           url: "/verbs/types",
         },
         {
-          title: "Past Verbs",
+          title: "Perfect Verbs",
           url: "/verbs/past-verbs",
         },
         {
-          title: "Present Verbs",
+          title: "Imperfect Verbs",
           url: "/verbs/present-verbs",
         },
       ],

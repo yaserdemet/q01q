@@ -1,49 +1,10 @@
 import { useParams, Link, useSearchParams } from "react-router-dom";
 import { ArrowLeft, BookOpenText } from "lucide-react";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-
-interface Ayah {
-  number: number;
-  text: string;
-  numberInSurah: number;
-  audio?: string;
-  juz: number;
-  manzil: number;
-  page: number;
-  ruku: number;
-  hizbQuarter: number;
-  sajda: boolean | object;
-}
-
-interface SurahData {
-  number: number;
-  name: string;
-  englishName: string;
-  englishNameTranslation: string;
-  revelationType: string;
-  numberOfAyahs: number;
-  ayahs: Ayah[];
-}
-
-const fetchSurahMeta = async (id: string) => {
-  const { data } = await axios.get(`https://api.alquran.cloud/v1/surah/${id}`);
-  return data.data as SurahData;
-};
-
-const fetchAyahsPage = async (id: string, edition: string, offset: number, limit: number) => {
-  const [arabicRes, translationRes] = await Promise.all([
-    axios.get(`https://api.alquran.cloud/v1/surah/${id}/ar.alafasy?offset=${offset}&limit=${limit}`),
-    axios.get(`https://api.alquran.cloud/v1/surah/${id}/${edition}?offset=${offset}&limit=${limit}`),
-  ]);
-
-  return {
-    arabicAyahs: arabicRes.data.data.ayahs as Ayah[],
-    translationAyahs: translationRes.data.data.ayahs as Ayah[],
-  };
-};
+import { quranApi } from "@/api/quranApi";
+import QuranLoading from "@/components/quran/QuranLoading";
 
 export default function SurahDetail() {
   const { id } = useParams<{ id: string }>();
@@ -53,7 +14,7 @@ export default function SurahDetail() {
 
   const { data: metaData, isLoading: isLoadingMeta, error: metaError } = useQuery({
     queryKey: ["surahMeta", id],
-    queryFn: () => fetchSurahMeta(id!),
+    queryFn: () => quranApi.fetchSurahMeta(id!),
     enabled: !!id,
   });
 
@@ -65,7 +26,7 @@ export default function SurahDetail() {
     status: infiniteStatus 
   } = useInfiniteQuery({
     queryKey: ["surahAyahs", id, edition],
-    queryFn: ({ pageParam = 0 }) => fetchAyahsPage(id!, edition, pageParam, 20),
+    queryFn: ({ pageParam = 0 }) => quranApi.fetchAyahsPage(id!, edition, pageParam, 20),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
       const totalLoaded = allPages.reduce((acc, page) => acc + page.arabicAyahs.length, 0);
@@ -86,7 +47,7 @@ export default function SurahDetail() {
   if (isLoadingMeta || infiniteStatus === "pending") {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
+        <QuranLoading />
       </div>
     );
   }
@@ -124,7 +85,7 @@ export default function SurahDetail() {
         </div>
         <div className="flex flex-wrap justify-center gap-4 mt-4 text-emerald-100 text-sm md:text-base">
           <span className="bg-emerald-900/50 px-4 py-1.5 rounded-full backdrop-blur-sm border border-emerald-700/50">
-            {metaData.revelationType === "Meccan" ? "Mekki" : "Medeni"}
+            {metaData.revelationType === "Meccan" ? "Mekke" : "Medine"}
           </span>
           <span className="bg-emerald-900/50 px-4 py-1.5 rounded-full backdrop-blur-sm border border-emerald-700/50">
             {metaData.numberOfAyahs} Ayet
@@ -181,7 +142,7 @@ export default function SurahDetail() {
 
       <div ref={observerRef} className="py-10 flex justify-center">
         {isFetchingNextPage ? (
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>
+          <QuranLoading type="infinite" />
         ) : hasNextPage ? (
           <p className="text-sm text-gray-400">Daha fazla yükleniyor...</p>
         ) : (
