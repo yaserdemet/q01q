@@ -28,7 +28,7 @@ export default function SurahDetail() {
     queryKey: ["surahAyahs", id, edition],
     queryFn: ({ pageParam = 0 }) => quranApi.fetchAyahsPage(id!, edition, pageParam, 20),
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
+    getNextPageParam: (_lastPage, allPages) => {
       const totalLoaded = allPages.reduce((acc, page) => acc + page.arabicAyahs.length, 0);
       if (metaData && totalLoaded < metaData.numberOfAyahs) {
         return totalLoaded;

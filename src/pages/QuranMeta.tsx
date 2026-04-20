@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Activity, ArrowLeft, Book, Disc, Hash, Layers, Layout, List, Map } from "lucide-react";
+import { Activity, Book, Disc, Hash, Layers, Layout, List, Map } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
